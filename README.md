@@ -20,6 +20,13 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 | 2      | 1.3   | 2025-09-22  | Declaración y asignación de variables. Tipos de datos.          |
 | 2      | 1.4   | 2025-09-22  | Conversión de tipos. Constantes.                                |
 
+### Unidad: Funciones y Formularios
+| Semana | Clase | Fecha       | Contenido                                                       |
+|--------|-------|-------------|-----------------------------------------------------------------|
+| 4      | 1.8   | 2025-09-22  | Declaración de funciones, parámetros, valores de retorno.       |
+| 5      | 1.9   | 2025-09-22  | Funciones anónimas. Manejo de formularios ($_GET, $_POST).      |
+| 5      | 1.10  | 2025-09-22  | Procesamiento y validación básica. include, require.            |
+
 ### Unidad: Operadores y Estructuras de Control
 | Semana | Clase | Fecha       | Contenido                                                       |
 |--------|-------|-------------|-----------------------------------------------------------------|
@@ -27,12 +34,7 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 | 3      | 1.6   | 2025-10-03  | Estructuras if/else, switch.                                    |
 | 4      | 1.7   | 2025-10-03  | Bucles for, while, do/while, foreach. break y continue.         |
 
-### Unidad: Funciones y Formularios
-| Semana | Clase | Fecha       | Contenido                                                       |
-|--------|-------|-------------|-----------------------------------------------------------------|
-| 4      | 1.8   | 2025-09-22  | Declaración de funciones, parámetros, valores de retorno.       |
-| 5      | 1.9   | 2025-09-22  | Funciones anónimas. Manejo de formularios ($_GET, $_POST).      |
-| 5      | 1.10  | 2025-09-22  | Procesamiento y validación básica. include, require.            |
+
 
 ## Módulo 2: PHP Intermedio y Bases de Datos
 
