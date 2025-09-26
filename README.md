@@ -54,7 +54,7 @@ Consulta el árbol de archivos del repositorio para ver las prácticas correspon
 ## Enlaces útiles
 
 - [Sitio en GitHub Pages (solo archivos estáticos)](https://danielvgz.github.io/POT232_LAB-M_PRACTICAS_PHP/)
-- [Abrir en Codespaces (para ejecutar y probar código PHP)](https://github.com/codespaces/new?repo=danielvgz/POT232_LAB-M_PRACTICAS_PHP)
+- [Abrir en Codespaces (para ejecutar y probar código PHP)]([https://github.com/codespaces/new?repo=danielvgz/POT232_LAB-M_PRACTICAS_PHP](https://ideal-computing-machine-pj9rp9jp466rf6rvq.github.dev/))
 
 ---
 
