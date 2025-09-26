@@ -9,24 +9,40 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 
 Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el siguiente cronograma:
 
-| Semana | Tema principal                                        | Contenidos destacados                                                                           |
-|--------|-------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| 1      | Introducción a PHP                                    | ¿Qué es PHP?, Configuración de XAMPP/WAMP/MAMP, Primer script, Concepto de servidor web         |
-| 2      | Variables y Tipos de Datos                            | Declaración y asignación, Tipos de datos, Conversión de tipos, Constantes                       |
-| 3      | Operadores y Estructuras de Control                   | Operadores, if/else, switch, Bucles, break, continue                                            |
-| 4      | Funciones y Formularios                               | Declaración de funciones, Manejo de formularios, include/require                                |
-| 5      | Bases de Datos y PDO                                  | SQL básico, Conexión a MySQL con PDO, Manejo de errores                                         |
-| 6      | CRUD con PDO                                          | INSERT, SELECT, UPDATE, DELETE, Consultas preparadas, Fetching                                  |
-| 7      | POO en PHP                                            | Clases, objetos, métodos, herencia, interfaces, traits, namespaces                              |
-| 8      | Sesiones, Errores y APIs RESTful                      | Sesiones, cookies, manejo de errores, Introducción a APIs REST                                  |
-| 9      | Endpoints y Seguridad en APIs                         | Endpoints GET/POST/PUT/DELETE, Autenticación, CORS                                              |
-| 10     | Introducción a Vue.js                                 | ¿Qué es Vue?, Ventajas, Integración, Directivas básicas                                         |
-| 11     | Reactividad y Componentes en Vue                      | Datos reactivos, métodos, eventos, componentes, comunicación entre componentes                  |
-| 12     | Vue CLI y Comunicación con Backend                    | Vue CLI, Fetch API, Axios, Peticiones GET a la API                                              |
-| 13     | CRUD Frontend y Vue Router                            | Peticiones POST/PUT/DELETE, manejo de estado, Vue Router                                        |
-| 14     | Ciclo de Vida, Estilización y Buenas Prácticas        | Ciclo de vida, CSS scoped, estructura de proyecto, seguridad                                    |
-| 15     | Estado Global y Despliegue                            | Pinia/Vuex, build y despliegue, autenticación completa                                          |
-| 16     | Proyecto Final y Revisión                             | Revisión general, desarrollo y defensa de proyectos finales                                     |
+| Semana | Clase | Fecha       | Tema principal / Actividad                                                  |
+|--------|-------|-------------|-----------------------------------------------------------------------------|
+| 1      | 1     | 2025-09-15  | ¿Qué es PHP? Configuración de XAMPP/WAMP/MAMP. Primer script "Hola Mundo".  |
+| 1      | 2     | 2025-09-19  | Concepto de servidor web.                                                   |
+| 2      | 3     | 2025-09-22  | Variables: declaración, asignación, tipos de datos.                         |
+| 2      | 4     | 2025-09-26  | Conversión de tipos. Constantes.                                            |
+| 3      | 5     | 2025-09-29  | Operadores aritméticos, de asignación, de comparación, lógicos.             |
+| 3      | 6     | 2025-10-03  | Estructuras if/else, switch.                                                |
+| 4      | 7     | 2025-10-07  | Bucles for, while, do/while, foreach. break y continue.                     |
+| 4      | 8     | 2025-10-10  | Declaración de funciones, parámetros, valores de retorno, funciones anónimas|
+| 5      | 9     | 2025-10-14  | Manejo de formularios ($_GET, $_POST). Validación básica. include, require. |
+| 5      | 10    | 2025-10-17  | Introducción a DB relacionales, SQL básico (SELECT, INSERT).                |
+| 6      | 11    | 2025-10-21  | PHP Data Objects (PDO): conexión a MySQL, manejo de errores.                |
+| 6      | 12    | 2025-10-24  | Operaciones CRUD con PDO. Consultas preparadas y fetching de datos.         |
+| 7      | 13    | 2025-10-28  | POO: clases, objetos, propiedades, métodos, constructores, this, visibilidad|
+| 7      | 14    | 2025-10-31  | Herencia, interfaces, traits, métodos estáticos. Namespaces y Autoloading.  |
+| 8      | 15    | 2025-11-04  | Sesiones ($_SESSION), cookies ($_COOKIE).                                   |
+| 8      | 16    | 2025-11-07  | Manejo de errores (try/catch). APIs REST: conceptos, verbos, JSON.          |
+| 9      | 17    | 2025-11-11  | Endpoints GET y POST para Tareas.                                           |
+| 9      | 18    | 2025-11-14  | Endpoints PUT y DELETE, autenticación/autorización básica (API Key, CORS).  |
+| 10     | 19    | 2025-11-18  | ¿Qué es Vue.js? Ventajas, integración con CDN.                              |
+| 10     | 20    | 2025-11-21  | Instancia de Vue, interpolación, directivas (v-bind, v-model, v-if, v-show).|
+| 11     | 21    | 2025-11-25  | Reactividad: data, methods, computed, watchers.                             |
+| 11     | 22    | 2025-11-28  | v-for para listas, eventos (v-on), componentes, props.                      |
+| 12     | 23    | 2025-12-02  | Vue CLI, estructura de proyecto, Single File Components (.vue).             |
+| 12     | 24    | 2025-12-05  | Fetch API, Axios, peticiones GET a la API PHP.                              |
+| 13     | 25    | 2025-12-09  | Peticiones POST, PUT, DELETE con Axios.                                     |
+| 13     | 26    | 2025-12-12  | Manejo de estado reactivo, mensajes de éxito/error, Vue Router.             |
+| 14     | 27    | 2025-12-16  | Ciclo de vida de componentes, CSS scoped, clases y estilos dinámicos.       |
+| 14     | 28    | 2025-12-19  | Estructura de proyecto cohesiva, seguridad (XSS, CSRF).                     |
+| 15     | 29    | 2025-12-23  | Manejo de estados avanzado con Pinia/Vuex.                                  |
+| 15     | 30    | 2025-12-26  | Despliegue de aplicaciones, autenticación de usuarios completa.             |
+| 16     | 31    | 2025-12-30  | Revisión general del curso, preparación Proyecto Final.                      |
+| 16     | 32    | 2026-01-02  | Trabajo y defensa de Proyectos Finales.                                     |
 
 ---
 
