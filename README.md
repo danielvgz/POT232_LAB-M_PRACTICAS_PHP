@@ -28,16 +28,16 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 ### Unidad: Funciones y Formularios
 | Semana | Clase | Fecha       | Contenido                                                       |
 |--------|-------|-------------|-----------------------------------------------------------------|
-| 4      | 1.8   | 2025-09-22  | Declaración de funciones, parámetros, valores de retorno.       |
-| 5      | 1.9   | 2025-09-22  | Funciones anónimas. Manejo de formularios ($_GET, $_POST).      |
-| 5      | 1.10  | 2025-09-22  | Procesamiento y validación básica. include, require.            |
+| 2      | 1.8   | 2025-09-22  | Declaración de funciones, parámetros, valores de retorno.       |
+| 2      | 1.9   | 2025-09-22  | Funciones anónimas. Manejo de formularios ($_GET, $_POST).      |
+| 2      | 1.10  | 2025-09-22  | Procesamiento y validación básica. include, require.            |
 
 ### Unidad: Operadores y Estructuras de Control
 | Semana | Clase | Fecha       | Contenido                                                       |
 |--------|-------|-------------|-----------------------------------------------------------------|
 | 3      | 1.5   | 2025-10-03  | Operadores aritméticos, de asignación, comparación, lógicos.    |
 | 3      | 1.6   | 2025-10-03  | Estructuras if/else, switch.                                    |
-| 4      | 1.7   | 2025-10-03  | Bucles for, while, do/while, foreach. break y continue.         |
+| 3      | 1.7   | 2025-10-03  | Bucles for, while, do/while, foreach. break y continue.         |
 
 
 
@@ -46,14 +46,14 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 ### Unidad: Bases de Datos y PDO
 | Semana | Clase | Fecha       | Contenido                                                       |
 |--------|-------|-------------|-----------------------------------------------------------------|
-| 6      | 2.1   | 2025-10-21  | Introducción a DB relacionales, SQL básico (SELECT, INSERT).    |
-| 6      | 2.2   | 2025-10-21  | PHP Data Objects (PDO): Conexión a MySQL, manejo de errores.    |
+| 5      | 2.1   | 2025-10-21  | Introducción a DB relacionales, SQL básico (SELECT, INSERT).    |
+| 5      | 2.2   | 2025-10-21  | PHP Data Objects (PDO): Conexión a MySQL, manejo de errores.    |
 
 ### Unidad: CRUD con PDO
 | Semana | Clase | Fecha       | Contenido                                                       |
 |--------|-------|-------------|-----------------------------------------------------------------|
-| 7      | 2.3   | 2025-10-28  | Operaciones INSERT, SELECT, UPDATE, DELETE con PDO.             |
-| 7      | 2.4   | 2025-10-28  | Consultas preparadas, prevención SQLi, Fetching de datos.       |
+| 6      | 2.3   | 2025-10-28  | Operaciones INSERT, SELECT, UPDATE, DELETE con PDO.             |
+| 6      | 2.4   | 2025-10-28  | Consultas preparadas, prevención SQLi, Fetching de datos.       |
 
 ### Unidad: POO en PHP
 | Semana | Clase | Fecha       | Contenido                                                       |
