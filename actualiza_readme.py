@@ -56,8 +56,9 @@ def actualiza_estado_readme():
         re.DOTALL
     )
     nueva_tabla = (
-        "| Semana actual | Fecha de hoy | Tema del día                 | Nota                                          |\n"
-        "|---------------|--------------|------------------------------|-----------------------------------------------|\n"
+        "| Fecha de hoy  | "
+        "| Semana actual |  Tema del día                 | Nota                                          |\n"
+        "|---------------|-------------------------------|-----------------------------------------------|\n"
         f"{nueva_fila}\n"
     )
     nuevo_contenido = re.sub(patron, rf"\1\n{nueva_tabla}\3", contenido)
