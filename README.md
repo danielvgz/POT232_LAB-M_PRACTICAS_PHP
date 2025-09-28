@@ -6,7 +6,7 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 <!-- ESTADO-ACTUAL-INI -->
 | Semana actual | Fecha de hoy | Tema del día                 | Nota                                          |
 |---------------|--------------|------------------------------|-----------------------------------------------|
-| 2             | 26/09/2025   | Funciones y Formularios      | Hoy toca una evaluación de lo que se vio el 22/09. |
+| 2             | 28/09/2025   | Constantes y conversión de tipos.      | Hoy toca una evaluación de lo que se vio el 22/09. |
 <!-- ESTADO-ACTUAL-FIN -->
 ---
 
