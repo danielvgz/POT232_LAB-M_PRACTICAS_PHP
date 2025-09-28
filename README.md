@@ -8,7 +8,7 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 
 | Semana actual |  Tema actual                              | Nota                                          |
 |---------------|--------------------------------------------|-----------------------------------------------|
-| 2             |   Constantes y conversión de tipos.      | evaluación de lo que se vio el 22/09. |
+| 2             |   Constantes y conversión de tipos.      | próxima evaluación el 26/09. |
 <!-- ESTADO-ACTUAL-FIN -->
 ---
 
