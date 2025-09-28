@@ -14,7 +14,7 @@ TEMAS = [
     # Agrega más temas según tu calendario real
 ]
 NOTAS = {
-    (2, 2): "Hoy toca una evaluación de lo que se vio el 22/09."
+    (2, 2): "evaluación próxima - clase 26/09."
 }
 
 def obtener_ultima_clase(fecha_actual):
