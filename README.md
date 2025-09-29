@@ -4,7 +4,7 @@ Bienvenido al repositorio de prácticas del laboratorio de **PHP** para la Secci
 Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante las 16 semanas del curso.
 
 <!-- ESTADO-ACTUAL-INI -->
-**Fecha de hoy: 29/09/2025** 
+**Fecha de hoy:**  29/09/2025
 
 | Semana actual | Última clase                          | Fecha última clase |
 |:-------------:|:-------------------------------------:|:-----------------:|
