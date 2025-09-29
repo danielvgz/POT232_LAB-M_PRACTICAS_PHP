@@ -4,11 +4,9 @@ Bienvenido al repositorio de prácticas del laboratorio de **PHP** para la Secci
 Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante las 16 semanas del curso.
 
 <!-- ESTADO-ACTUAL-INI -->
-# Fecha de hoy | 28/09/2025 
-
-| Semana actual |  Tema actual                              | Nota                                          |
-|---------------|--------------------------------------------|-----------------------------------------------|
-| 2             |   Constantes y conversión de tipos.      | próxima evaluación el 26/09. |
+| Fecha de hoy  | | Semana actual |  Tema del día                 | Nota                                          |
+|---------------|-------------------------------|-----------------------------------------------|
+| 2             | 29/09/2025   | Constantes y conversión de tipos.      | evaluación próxima - clase 26/09. |
 <!-- ESTADO-ACTUAL-FIN -->
 ---
 
