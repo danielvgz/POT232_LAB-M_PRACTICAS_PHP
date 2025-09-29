@@ -1,72 +1,72 @@
-import datetime
 import re
+import datetime
 
-FECHA_INICIO = datetime.date(2025, 9, 15)
-TEMAS = [
-    "¿Qué es PHP? Configuración y Hola Mundo.",
-    "Concepto de servidor web.",
-    "Variables y tipos de datos.",
-    "Constantes y conversión de tipos.",
-    "Operadores y estructuras de control.",
-    "Bucles y control de flujo.",
-    "Funciones y Formularios.",
-    "Evaluación de lo que se vio el 22/09.",
-    # Agrega más temas según tu calendario real
-]
-NOTAS = {
-    (2, 2): "evaluación próxima - clase 26/09."
-}
+README = "README.md"
 
-def obtener_ultima_clase(fecha_actual):
-    """Devuelve la semana, clase, número de clase y fecha de la última clase antes o igual a hoy."""
-    if fecha_actual < FECHA_INICIO:
-        return 0, 0, 0, FECHA_INICIO
-    clase = 0
-    semana = 1
-    fecha = FECHA_INICIO
-    ultima_clase_fecha = FECHA_INICIO
-    while fecha <= fecha_actual:
-        if fecha.weekday() in (1, 4):
-            clase += 1
-            ultima_clase_fecha = fecha
-            if clase % 2 == 1 and clase > 1:
-                semana += 1
-        fecha += datetime.timedelta(days=1)
-    clase_semana = 2 if ultima_clase_fecha.weekday() == 4 else 1
-    return semana, clase_semana, clase, ultima_clase_fecha
+def extraer_todas_las_clases(contenido):
+    """
+    Extrae todas las clases del cronograma de todas las tablas del README.
+    Devuelve una lista de tuplas: (semana, clase, fecha, tema)
+    """
+    # Busca todas las tablas de cronograma
+    tablas = re.findall(
+        r'\| *Semana *\| *Clase *\| *Fecha *\| *Contenido *\|([\s\S]+?)(\n\n|---|\Z)', contenido)
+    clases = []
+    for tabla in tablas:
+        filas = re.findall(
+            r'\| *(\d+) *\| *([\w\.]+) *\| *([\d\-]+) *\| *([^\|]+?) *\|', tabla[0])
+        for semana, clase, fecha, tema in filas:
+            try:
+                fecha_obj = datetime.datetime.strptime(fecha, "%Y-%m-%d").date()
+                clases.append((int(semana), clase, fecha_obj, tema.strip()))
+            except Exception:
+                continue
+    # Ordenar por fecha
+    clases.sort(key=lambda x: x[2])
+    return clases
 
-def tema_y_nota(semana, clase_semana, clase):
-    idx = clase - 1 if 0 <= clase - 1 < len(TEMAS) else -1
-    tema = TEMAS[idx] if idx >= 0 else "Por definir"
-    nota = NOTAS.get((semana, clase_semana), "")
-    return tema, nota
+def encontrar_ultima_clase(clases, hoy):
+    """
+    Retorna la info de la última clase hasta la fecha de hoy.
+    """
+    clases_anteriores = [c for c in clases if c[2] <= hoy]
+    if not clases_anteriores:
+        return None
+    return max(clases_anteriores, key=lambda c: c[2])
 
-def actualiza_estado_readme():
+def actualizar_estado_actual(contenido, semana, tema, fecha_clase, hoy):
+    """
+    Actualiza la sección <!-- ESTADO-ACTUAL-INI --> ... <!-- ESTADO-ACTUAL-FIN -->
+    en el README.
+    """
+    tabla = (
+        f"**Fecha de hoy:** {hoy.strftime('%d/%m/%Y')}\n\n"
+        "| Semana actual | Última clase                          | Fecha última clase |\n"
+        "|:-------------:|:-------------------------------------:|:-----------------:|\n"
+        f"| {semana:^13} | {tema:^37} | {fecha_clase.strftime('%d/%m/%Y'):^17} |\n"
+    )
+    patron = re.compile(
+        r"(<!-- ESTADO-ACTUAL-INI -->)(.*?)(<!-- ESTADO-ACTUAL-FIN -->)", re.DOTALL)
+    nuevo_contenido = re.sub(patron, rf"\1\n{tabla}\3", contenido)
+    return nuevo_contenido
+
+def main():
     hoy = datetime.date.today()
-    # Encuentra la última clase (puede ser hoy o anterior)
-    semana, clase_semana, clase, fecha_clase = obtener_ultima_clase(hoy)
-    tema, nota = tema_y_nota(semana, clase_semana, clase)
-    nueva_fila = f"| {semana}             | {hoy.strftime('%d/%m/%Y')}   | {tema}      | {nota} |"
-
-    with open("README.md", encoding="utf-8") as f:
+    with open(README, encoding="utf-8") as f:
         contenido = f.read()
 
-    patron = re.compile(
-        r"(<!-- ESTADO-ACTUAL-INI -->)(.*?)(<!-- ESTADO-ACTUAL-FIN -->)",
-        re.DOTALL
-    )
-    nueva_tabla = (
-        "| Fecha de hoy  | "
-        "| Semana actual |  Tema del día                 | Nota                                          |\n"
-        "|---------------|-------------------------------|-----------------------------------------------|\n"
-        f"{nueva_fila}\n"
-    )
-    nuevo_contenido = re.sub(patron, rf"\1\n{nueva_tabla}\3", contenido)
+    clases = extraer_todas_las_clases(contenido)
+    ultima = encontrar_ultima_clase(clases, hoy)
+    if not ultima:
+        print("No se encontró ninguna clase anterior a hoy.")
+        return
 
-    with open("README.md", "w", encoding="utf-8") as f:
+    semana, _, fecha_clase, tema = ultima
+    nuevo_contenido = actualizar_estado_actual(contenido, semana, tema, fecha_clase, hoy)
+
+    with open(README, "w", encoding="utf-8") as f:
         f.write(nuevo_contenido)
-
-    print(f"Actualizado a semana {semana}, clase {clase_semana}: {tema} (fecha: {hoy})")
+    print("README actualizado correctamente.")
 
 if __name__ == "__main__":
-    actualiza_estado_readme()
+    main()
