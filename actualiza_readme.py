@@ -3,13 +3,6 @@ import datetime
 
 README = "README.md"
 
-def actualizar_fecha(contenido, hoy):
-    bloque = f"**Fecha de hoy:** {hoy.strftime('%d/%m/%Y')}\n"
-    patron = re.compile(r"(<!-- ESTADO-ACTUAL-INI -->)[\s\S]*?(<!-- ESTADO-ACTUAL-FIN -->)", re.DOTALL)
-    nuevo_contenido = re.sub(patron, rf"\1\n{bloque}\2", contenido)
-    return nuevo_contenido
-
-
 def extraer_clases(contenido):
     tablas = re.findall(
         r"\| *Semana *\| *Clase *\| *Fecha *\| *Contenido *\|([\s\S]+?)(?:\n\n|---|\Z)", contenido)
@@ -30,30 +23,49 @@ def extraer_clases(contenido):
                 continue
     return clases
 
-def actualizar_estado_cronograma_simple(contenido, clases, hoy):
-    # Solo texto plano, una línea por clase
-    filas = [
-        f"Semana {c['semana']} | Clase {c['clase']} | {c['fecha']} | {c['tema']}"
-        for c in clases if c["fecha"] <= hoy
-    ]
-    if not filas:
-        bloque = "Sin clases dictadas aún."
+def clases_semana_actual(clases, hoy):
+    # Busca las clases más cercanas (en los próximos 3 días, incluyendo hoy)
+    clases_ordenadas = sorted(clases, key=lambda c: c["fecha"])
+    futuras = [c for c in clases_ordenadas if c["fecha"] >= hoy and (c["fecha"] - hoy).days <= 3]
+    if futuras:
+        semana_objetivo = futuras[0]["semana"]
+        resultado = [c for c in clases_ordenadas if c["semana"] == semana_objetivo]
     else:
-        bloque = "\n".join(filas)
+        pasadas = [c for c in clases_ordenadas if c["fecha"] <= hoy]
+        if pasadas:
+            semana_objetivo = pasadas[-1]["semana"]
+            resultado = [c for c in clases_ordenadas if c["semana"] == semana_objetivo]
+        else:
+            resultado = []
+    return resultado
+
+def actualizar_estado_cronograma_simple(contenido, clases, hoy):
+    activas = clases_semana_actual(clases, hoy)
+    if not activas:
+        bloque = "Sin clases dictadas ni próximas en el cronograma."
+    else:
+        bloque = "\n".join(
+            f"Semana {c['semana']} | Clase {c['clase']} | {c['fecha']} | {c['tema']}"
+            for c in activas
+        )
     patron = re.compile(r"(<!-- ESTADO-CRONOGRAMA-INI -->)[\s\S]*?(<!-- ESTADO-CRONOGRAMA-FIN -->)", re.DOTALL)
     if not re.search(patron, contenido):
         contenido = contenido.strip() + "\n\n<!-- ESTADO-CRONOGRAMA-INI -->\n<!-- ESTADO-CRONOGRAMA-FIN -->\n"
     nuevo_contenido = re.sub(patron, rf"\1\n{bloque}\n\2", contenido)
     return nuevo_contenido
 
+def actualizar_fecha(contenido, hoy):
+    bloque = f"**Fecha de hoy:** {hoy.strftime('%d/%m/%Y')}\n"
+    patron = re.compile(r"(<!-- ESTADO-ACTUAL-INI -->)[\s\S]*?(<!-- ESTADO-ACTUAL-FIN -->)", re.DOTALL)
+    nuevo_contenido = re.sub(patron, rf"\1\n{bloque}\2", contenido)
+    return nuevo_contenido
+
 def main():
     hoy = datetime.date.today()
     with open(README, encoding="utf-8") as f:
         contenido = f.read()
-    # Actualiza fecha
-    nuevo_contenido = actualizar_fecha(contenido, hoy)
-    # Extrae clases y actualiza estado cronograma
-    clases = extraer_clases(nuevo_contenido)
+    contenido = actualizar_fecha(contenido, hoy)
+    clases = extraer_clases(contenido)
     nuevo_contenido = actualizar_estado_cronograma_simple(contenido, clases, hoy)
     if nuevo_contenido != contenido:
         with open(README, "w", encoding="utf-8") as f:
@@ -61,5 +73,6 @@ def main():
         print("README actualizado correctamente.")
     else:
         print("No hubo cambios en el README.")
+
 if __name__ == "__main__":
     main()
