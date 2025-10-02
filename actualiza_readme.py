@@ -4,26 +4,22 @@ import datetime
 README = "README.md"
 
 def extraer_clases(contenido):
-    tablas = re.findall(
-        r"\| *Semana *\| *Clase *\| *Fecha *\| *Contenido *\|([\s\S]+?)(?:\n\n|---|\Z)", contenido)
-    print("Tablas encontradas:", len(tablas))
+    regex = r"\| *(\d+) *\| *([\w\.]+) *\| *([\d\-]+) *\|([^\n]*)\|"
+    filas = re.findall(regex, contenido)
+    print("Filas encontradas:", filas)
     clases = []
-    for tabla in tablas:
-        filas = re.findall(
-            r"\| *(\d+) *\| *([\w\.]+) *\| *([\d\-]+) *\| *([^\|]+?) *\|", tabla[0])
-        print("Filas encontradas en tabla:", len(filas))
-        for semana, clase, fecha, tema in filas:
-            try:
-                fecha_obj = datetime.datetime.strptime(fecha.strip(), "%Y-%m-%d").date()
-                clases.append({
-                    "semana": int(semana),
-                    "clase": clase,
-                    "fecha": fecha_obj,
-                    "tema": tema.strip()
-                })
-            except Exception as e:
-                print("Error en fila:", semana, clase, fecha, tema, "->", e)
-    print("Total clases extraídas:", len(clases))
+    for semana, clase, fecha, tema in filas:
+        try:
+            fecha_obj = datetime.datetime.strptime(fecha.strip(), "%Y-%m-%d").date()
+            clases.append({
+                "semana": int(semana),
+                "clase": clase.strip(),
+                "fecha": fecha_obj,
+                "tema": tema.strip()
+            })
+        except Exception as e:
+            print("Error en fila:", semana, clase, fecha, tema, "->", e)
+    print("Clases extraídas:", clases)
     return clases
 
 def clases_semana_a_mostrar(clases, hoy):
