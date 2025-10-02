@@ -31,11 +31,10 @@ def clases_proxima_semana(clases, hoy):
     futuras = [c for c in clases if c["fecha"] > hoy]
     if futuras:
         futuras = sorted(futuras, key=lambda c: c["fecha"])
-        dias_hasta_proxima = (futuras[0]["fecha"] - hoy).days
-        if dias_hasta_proxima > 2:
-            semana = futuras[0]["semana"]
-            return [c for c in clases if c["semana"] == semana]
-    return []
+        semana = futuras[0]["semana"]
+        proxima_fecha = futuras[0]["fecha"]
+        return [c for c in clases if c["semana"] == semana], proxima_fecha
+    return [], None
 
 def tabla_markdown(clases):
     if not clases:
@@ -74,10 +73,10 @@ def main():
     bloque1 = "### Última semana dictada\n\n" + tabla_markdown(pasadas)
     contenido = actualizar_estado_tabla(contenido, bloque1, "SEMANA-PASADA")
 
-    # Estado 2: Próxima semana (si falta más de 2 días)
-    proximas = clases_proxima_semana(clases, hoy)
-    if proximas:  # solo muestra si hay próximas y faltan más de 2 días
-        bloque2 = "### Próxima semana de clase (faltan más de 2 días)\n\n" + tabla_markdown(proximas)
+    # Estado 2: Próxima semana (si hay alguna futura)
+    proximas, proxima_fecha = clases_proxima_semana(clases, hoy)
+    if proximas:
+        bloque2 = f"### Próxima semana de clase\n\n**Próxima fecha:** {proxima_fecha.strftime('%d/%m/%Y')}\n\n" + tabla_markdown(proximas)
     else:
         bloque2 = ""
     contenido = actualizar_estado_tabla(contenido, bloque2, "SEMANA-PROXIMA")
