@@ -6,7 +6,11 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 **Fecha de hoy:** 02/10/2025
 <!-- ESTADO-ACTUAL-FIN -->
 
-<!-- ESTADO-CRONOGRAMA-INI --> ... <!-- ESTADO-CRONOGRAMA-FIN -->
+<!-- ESTADO-CRONOGRAMA-INI -->
+### Estado del cronograma
+
+_Ninguna clase dictada aún._
+<!-- ESTADO-CRONOGRAMA-FIN -->
 
 ## Descripción del curso
 
