@@ -7,7 +7,7 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 <!-- ESTADO-ACTUAL-FIN -->
 
 <!-- ESTADO-CRONOGRAMA-INI -->
-r"\| *Semana *\| *Clase *\| *Fecha *\| *Contenido *\|([\s\S]+?)(?:\n\n|---|\Z)"
+.
 <!-- ESTADO-CRONOGRAMA-FIN -->
 
 ## Descripción del curso
