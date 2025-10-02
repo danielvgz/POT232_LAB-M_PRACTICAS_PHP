@@ -7,9 +7,22 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 <!-- ESTADO-ACTUAL-FIN -->
 
 <!-- ESTADO-SEMANA-PASADA-INI -->
+### Última semana dictada
+
+| Semana | Clase | Fecha | Contenido |
+|:------:|:------:|:----------:|:-------------------------------|
+| 2 | 1.3 | 22/09/2025 | Declaración y asignación de variables. Tipos de datos. |
+| 2 | 1.4 | 22/09/2025 | Conversión de tipos. Constantes. |
+| 2 | 1.8 | 22/09/2025 | Declaración de funciones, parámetros, valores de retorno. |
+| 2 | 1.9 | 22/09/2025 | Funciones anónimas. Manejo de formularios ($_GET, $_POST). |
+| 2 | 1.10 | 22/09/2025 | Procesamiento y validación básica. include, require. |
+
 <!-- ESTADO-SEMANA-PASADA-FIN -->
 
 <!-- ESTADO-SEMANA-PROXIMA-INI -->
+### Próxima semana de clase (faltan más de 2 días)
+
+_Sin clases en este estado._
 <!-- ESTADO-SEMANA-PROXIMA-FIN -->
 
 ## Descripción del curso
