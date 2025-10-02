@@ -20,6 +20,15 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 <!-- ESTADO-SEMANA-PASADA-FIN -->
 
 <!-- ESTADO-SEMANA-PROXIMA-INI -->
+### Próxima semana de clase
+
+**Próxima fecha:** 03/10/2025
+
+| Semana | Clase | Fecha | Contenido |
+|:------:|:------:|:----------:|:-------------------------------|
+| 3 | 1.5 | 03/10/2025 | Operadores aritméticos, de asignación, comparación, lógicos. |
+| 3 | 1.6 | 03/10/2025 | Estructuras if/else, switch. |
+| 3 | 1.7 | 03/10/2025 | Bucles for, while, do/while, foreach. break y continue. |
 
 <!-- ESTADO-SEMANA-PROXIMA-FIN -->
 
