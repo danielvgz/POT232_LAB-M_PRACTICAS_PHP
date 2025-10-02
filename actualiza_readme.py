@@ -9,8 +9,8 @@ def actualizar_fecha(contenido, hoy):
     nuevo_contenido = re.sub(patron, rf"\1\n{bloque}\2", contenido)
     return nuevo_contenido
 
+
 def extraer_clases(contenido):
-    # Busca todas las tablas de cronograma, retorna todas las filas
     tablas = re.findall(
         r"\| *Semana *\| *Clase *\| *Fecha *\| *Contenido *\|([\s\S]+?)(?:\n\n|---|\Z)", contenido)
     clases = []
@@ -21,8 +21,8 @@ def extraer_clases(contenido):
             try:
                 fecha_obj = datetime.datetime.strptime(fecha.strip(), "%Y-%m-%d").date()
                 clases.append({
-                    "semana": int(semana),
-                    "clase": clase.strip(),
+                    "semana": semana,
+                    "clase": clase,
                     "fecha": fecha_obj,
                     "tema": tema.strip()
                 })
@@ -30,21 +30,19 @@ def extraer_clases(contenido):
                 continue
     return clases
 
-def actualizar_estado_cronograma(contenido, clases, hoy):
-    # Filtra solo las filas cuya fecha es <= hoy
-    clases_hasta_hoy = [c for c in clases if c["fecha"] <= hoy]
-    if not clases_hasta_hoy:
-        tabla = "_Ninguna clase dictada aún._"
+def actualizar_estado_cronograma_simple(contenido, clases, hoy):
+    # Solo texto plano, una línea por clase
+    filas = [
+        f"Semana {c['semana']} | Clase {c['clase']} | {c['fecha']} | {c['tema']}"
+        for c in clases if c["fecha"] <= hoy
+    ]
+    if not filas:
+        bloque = "Sin clases dictadas aún."
     else:
-        tabla = "| Semana | Clase | Fecha | Contenido |\n"
-        tabla += "|:------:|:------:|:----------:|:-------------------------------|\n"
-        for c in clases_hasta_hoy:
-            tabla += f"| {c['semana']} | {c['clase']} | {c['fecha'].strftime('%d/%m/%Y')} | {c['tema']} |\n"
-    bloque = f"### Estado del cronograma\n\n{tabla}"
+        bloque = "\n".join(filas)
     patron = re.compile(r"(<!-- ESTADO-CRONOGRAMA-INI -->)[\s\S]*?(<!-- ESTADO-CRONOGRAMA-FIN -->)", re.DOTALL)
     if not re.search(patron, contenido):
-        # Si no existe el bloque, lo crea al final del README
-        contenido = contenido.strip() + f"\n\n<!-- ESTADO-CRONOGRAMA-INI -->\n\n<!-- ESTADO-CRONOGRAMA-FIN -->\n"
+        contenido = contenido.strip() + "\n\n<!-- ESTADO-CRONOGRAMA-INI -->\n<!-- ESTADO-CRONOGRAMA-FIN -->\n"
     nuevo_contenido = re.sub(patron, rf"\1\n{bloque}\n\2", contenido)
     return nuevo_contenido
 
