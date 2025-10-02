@@ -34,6 +34,10 @@ def actualizar_estado_actual(contenido, semana, tipo, tema, fecha_clase, hoy):
     )
     patron = re.compile(
         r"(<!-- ESTADO-ACTUAL-INI -->)[\s\S]*?(<!-- ESTADO-ACTUAL-FIN -->)", re.DOTALL)
+    if not re.search(patron, contenido):
+        print("NO SE ENCONTRÓ EL BLOQUE DE ESTADO EN EL README")
+    else:
+        print("Bloque de estado encontrado y reemplazado")
     nuevo_contenido = re.sub(patron, rf"\1\n{tabla}\2", contenido)
     return nuevo_contenido
 
