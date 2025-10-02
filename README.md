@@ -7,7 +7,7 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 <!-- ESTADO-ACTUAL-FIN -->
 
 <!-- ESTADO-CRONOGRAMA-INI -->
-...
+Sin clases dictadas aún.
 <!-- ESTADO-CRONOGRAMA-FIN -->
 
 ## Descripción del curso
