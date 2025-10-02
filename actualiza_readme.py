@@ -6,7 +6,6 @@ README = "README.md"
 def extraer_clases(contenido):
     regex = r"\| *(\d+) *\| *([\w\.]+) *\| *([\d\-]+) *\|([^\n]*)\|"
     filas = re.findall(regex, contenido)
-    print("Filas encontradas:", filas)
     clases = []
     for semana, clase, fecha, tema in filas:
         try:
@@ -19,59 +18,71 @@ def extraer_clases(contenido):
             })
         except Exception as e:
             print("Error en fila:", semana, clase, fecha, tema, "->", e)
-    print("Clases extraídas:", clases)
     return clases
 
-def clases_semana_a_mostrar(clases, hoy):
-    clases_ordenadas = sorted(clases, key=lambda c: c["fecha"])
-    # Todas las clases pasadas (<= hoy)
-    pasadas = [c for c in clases_ordenadas if c["fecha"] <= hoy]
+def clases_ultima_semana_pasada(clases, hoy):
+    pasadas = [c for c in clases if c["fecha"] <= hoy]
     if pasadas:
-        semana_objetivo = pasadas[-1]["semana"]
-        # Muestra todas las clases de esa semana
-        return [c for c in clases_ordenadas if c["semana"] == semana_objetivo]
-    # Si no hay pasadas, busca la semana más próxima
-    futuras = [c for c in clases_ordenadas if c["fecha"] > hoy]
-    if futuras:
-        semana_objetivo = futuras[0]["semana"]
-        return [c for c in clases_ordenadas if c["semana"] == semana_objetivo]
-    # Si no hay ninguna clase
+        semana = pasadas[-1]["semana"]
+        return [c for c in clases if c["semana"] == semana]
     return []
 
-def actualizar_estado_cronograma_simple(contenido, clases, hoy):
-    activas = clases_semana_a_mostrar(clases, hoy)
-    if not activas:
-        bloque = "Sin clases en el cronograma."
-    else:
-        bloque = "\n".join(
-            f"Semana {c['semana']} | Clase {c['clase']} | {c['fecha']} | {c['tema']}"
-            for c in activas
-        )
-    patron = re.compile(r"(<!-- ESTADO-CRONOGRAMA-INI -->)[\s\S]*?(<!-- ESTADO-CRONOGRAMA-FIN -->)", re.DOTALL)
-    if not re.search(patron, contenido):
-        contenido = contenido.strip() + "\n\n<!-- ESTADO-CRONOGRAMA-INI -->\n<!-- ESTADO-CRONOGRAMA-FIN -->\n"
-    nuevo_contenido = re.sub(patron, rf"\1\n{bloque}\n\2", contenido)
-    return nuevo_contenido
+def clases_proxima_semana(clases, hoy):
+    # Busca la próxima clase (fecha > hoy)
+    futuras = [c for c in clases if c["fecha"] > hoy]
+    if futuras:
+        futuras = sorted(futuras, key=lambda c: c["fecha"])
+        # Si la próxima clase es mayor a 2 días de hoy, muestra toda esa semana
+        if (futuras[0]["fecha"] - hoy).days > 2:
+            semana = futuras[0]["semana"]
+            return [c for c in clases if c["semana"] == semana]
+    return []
 
-def actualizar_fecha(contenido, hoy):
+def tabla_markdown(clases):
+    if not clases:
+        return "_Sin clases en este estado._"
+    txt = "| Semana | Clase | Fecha | Contenido |\n"
+    txt += "|:------:|:------:|:----------:|:-------------------------------|\n"
+    for c in clases:
+        txt += f"| {c['semana']} | {c['clase']} | {c['fecha'].strftime('%d/%m/%Y')} | {c['tema']} |\n"
+    return txt
+
+def actualizar_estado_fecha(contenido, hoy):
     bloque = f"**Fecha de hoy:** {hoy.strftime('%d/%m/%Y')}\n"
     patron = re.compile(r"(<!-- ESTADO-ACTUAL-INI -->)[\s\S]*?(<!-- ESTADO-ACTUAL-FIN -->)", re.DOTALL)
-    nuevo_contenido = re.sub(patron, rf"\1\n{bloque}\2", contenido)
-    return nuevo_contenido
+    return re.sub(patron, rf"\1\n{bloque}\2", contenido)
+
+def actualizar_estado_tabla(contenido, bloque, estado):
+    patron = re.compile(
+        rf"(<!-- ESTADO-{estado}-INI -->)[\s\S]*?(<!-- ESTADO-{estado}-FIN -->)", re.DOTALL)
+    if not re.search(patron, contenido):
+        contenido = contenido.strip() + f"\n\n<!-- ESTADO-{estado}-INI -->\n<!-- ESTADO-{estado}-FIN -->\n"
+    return re.sub(patron, rf"\1\n{bloque}\n\2", contenido)
 
 def main():
     hoy = datetime.date.today()
     with open(README, encoding="utf-8") as f:
         contenido = f.read()
-    contenido = actualizar_fecha(contenido, hoy)
+
+    # Estado de la fecha
+    contenido = actualizar_estado_fecha(contenido, hoy)
+
+    # Extrae clases
     clases = extraer_clases(contenido)
-    nuevo_contenido = actualizar_estado_cronograma_simple(contenido, clases, hoy)
-    if nuevo_contenido != contenido:
-        with open(README, "w", encoding="utf-8") as f:
-            f.write(nuevo_contenido)
-        print("README actualizado correctamente.")
-    else:
-        print("No hubo cambios en el README.")
+
+    # Estado 1: Última semana dictada
+    pasadas = clases_ultima_semana_pasada(clases, hoy)
+    bloque1 = "### Última semana dictada\n\n" + tabla_markdown(pasadas)
+    contenido = actualizar_estado_tabla(contenido, bloque1, "SEMANA-PASADA")
+
+    # Estado 2: Próxima semana (si falta más de 2 días)
+    proximas = clases_proxima_semana(clases, hoy)
+    bloque2 = "### Próxima semana de clase (faltan más de 2 días)\n\n" + tabla_markdown(proximas)
+    contenido = actualizar_estado_tabla(contenido, bloque2, "SEMANA-PROXIMA")
+
+    with open(README, "w", encoding="utf-8") as f:
+        f.write(contenido)
+    print("README actualizado correctamente.")
 
 if __name__ == "__main__":
     main()
