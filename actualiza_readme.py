@@ -70,7 +70,7 @@ def main():
 
     # Estado 1: Última semana dictada
     pasadas = clases_ultima_semana_pasada(clases, hoy)
-    bloque1 = "### Última semana dictada\n\n" + tabla_markdown(pasadas)
+    bloque1 = "### Clase pasada\n\n" + tabla_markdown(pasadas)
     contenido = actualizar_estado_tabla(contenido, bloque1, "SEMANA-PASADA")
 
     # Estado 2: Próxima semana (si hay alguna futura)
