@@ -4,11 +4,11 @@ Bienvenido al repositorio de prácticas del laboratorio de **PHP** para la Secci
 Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante las 16 semanas del curso.
 
 <!-- ESTADO-ACTUAL-INI -->
-**Fecha de hoy:**  29/09/2025
+**Fecha de hoy:** 01/10/2025
 
 | Semana actual | Última clase                          | Fecha última clase |
 |:-------------:|:-------------------------------------:|:-----------------:|
-|      2        | Manejo de formularios ($_GET, $_POST) |    26/09/2025     |
+|      3        | Operadores aritméticos, de asignación, comparación, lógicos.    |    03/10/2025     |
 <!-- ESTADO-ACTUAL-FIN -->
 ---
 
@@ -40,7 +40,6 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 | 3      | 1.5   | 2025-10-03  | Operadores aritméticos, de asignación, comparación, lógicos.    |
 | 3      | 1.6   | 2025-10-03  | Estructuras if/else, switch.                                    |
 | 3      | 1.7   | 2025-10-03  | Bucles for, while, do/while, foreach. break y continue.         |
-
 
 
 ## Módulo 2: PHP Intermedio y Bases de Datos
@@ -78,6 +77,7 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 | 10     | 3.3   | 2025-11-18  | Endpoints PUT y DELETE. Autenticación/Autorización básica.      |
 | 11     | 3.4   | 2025-11-18  | CORS y seguridad en APIs.                                       |
 
+
 ## Módulo 4: Introducción a Vue.js
 
 ### Unidad: Fundamentos y Reactividad
@@ -113,8 +113,8 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 
 ## Progreso actual
 
-- **Semana actual:** 2
-- **Hoy:** Viernes, evaluación de PHP (semana 2)
+- **Semana actual:** 3
+- **Hoy:** Jueves, semana de operadores y estructuras de control
 - El repositorio se irá actualizando semanalmente con nuevas prácticas y recursos.
 
 ---
