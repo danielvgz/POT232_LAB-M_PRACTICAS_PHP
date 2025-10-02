@@ -4,11 +4,6 @@ import datetime
 README = "README.md"
 
 def extraer_todas_las_clases(contenido):
-    """
-    Extrae todas las clases del cronograma de todas las tablas del README.
-    Devuelve una lista de tuplas: (semana, clase, fecha, tema)
-    """
-    # Busca todas las tablas de cronograma
     tablas = re.findall(
         r'\| *Semana *\| *Clase *\| *Fecha *\| *Contenido *\|([\s\S]+?)(\n\n|---|\Z)', contenido)
     clases = []
@@ -21,25 +16,40 @@ def extraer_todas_las_clases(contenido):
                 clases.append((int(semana), clase, fecha_obj, tema.strip()))
             except Exception:
                 continue
-    # Ordenar por fecha
-    clases.sort(key=lambda x: x[2])
+    clases.sort(key=lambda x: (x[2], x[1]))
     return clases
 
-def encontrar_clase_actual(clases, hoy):
-    """
-    Retorna la info de la clase más reciente cuya fecha sea <= hoy.
-    """
-    clases_pasadas = [c for c in clases if c[2] <= hoy]
-    if not clases_pasadas:
-        return None
-    # Tomamos la clase con la fecha más reciente <= hoy
-    return max(clases_pasadas, key=lambda c: c[2])
+def determinar_estado_actual(clases, hoy):
+    # Agrupa por semana
+    semanas = {}
+    for semana, clase, fecha, tema in clases:
+        if semana not in semanas:
+            semanas[semana] = []
+        semanas[semana].append((clase, fecha, tema))
+
+    semana_actual = None
+    clase_actual = None
+    fecha_actual = None
+    tema_actual = None
+
+    # Busca la semana más alta cuya primera clase ya haya ocurrido
+    for semana in sorted(semanas.keys()):
+        fechas_semana = [f for _, f, _ in semanas[semana]]
+        if min(fechas_semana) <= hoy:
+            semana_actual = semana
+
+    if semana_actual is not None:
+        # Si hoy es igual o mayor que la primera clase de esa semana, mostrar la última clase de esa semana <= hoy
+        posibles = [(clase, fecha, tema) for clase, fecha, tema in semanas[semana_actual] if fecha <= hoy]
+        if posibles:
+            clase_actual, fecha_actual, tema_actual = max(posibles, key=lambda x: x[1])
+        else:
+            # Si no hay clases pasadas esta semana, toma la primera futura de esa semana
+            clase_actual, fecha_actual, tema_actual = min(semanas[semana_actual], key=lambda x: x[1])
+        return semana_actual, tema_actual, fecha_actual
+    return None, None, None
 
 def actualizar_estado_actual(contenido, semana, tema, fecha_clase, hoy):
-    """
-    Actualiza la sección <!-- ESTADO-ACTUAL-INI --> ... <!-- ESTADO-ACTUAL-FIN -->
-    en el README.
-    """
     tabla = (
         f"**Fecha de hoy:** {hoy.strftime('%d/%m/%Y')}\n\n"
         "| Semana actual | Última clase                          | Fecha última clase |\n"
@@ -55,19 +65,19 @@ def main():
     hoy = datetime.date.today()
     with open(README, encoding="utf-8") as f:
         contenido = f.read()
-
     clases = extraer_todas_las_clases(contenido)
-    clase_actual = encontrar_clase_actual(clases, hoy)
-    if not clase_actual:
-        print("No se encontró ninguna clase para la fecha de hoy o antes.")
+    semana, tema, fecha_clase = determinar_estado_actual(clases, hoy)
+    if semana is None:
+        print("No se encontró ninguna clase anterior a hoy.")
         return
-
-    semana, _, fecha_clase, tema = clase_actual
     nuevo_contenido = actualizar_estado_actual(contenido, semana, tema, fecha_clase, hoy)
-
-    with open(README, "w", encoding="utf-8") as f:
-        f.write(nuevo_contenido)
-    print("README actualizado correctamente.")
+    # Si el contenido es diferente, escribe el archivo (esto fuerza el cambio siempre que la fecha cambie)
+    if nuevo_contenido != contenido:
+        with open(README, "w", encoding="utf-8") as f:
+            f.write(nuevo_contenido)
+        print("README actualizado correctamente.")
+    else:
+        print("No hubo cambios en el README.")
 
 if __name__ == "__main__":
     main()
