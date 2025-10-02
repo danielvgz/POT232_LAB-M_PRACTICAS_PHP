@@ -7,7 +7,11 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 <!-- ESTADO-ACTUAL-FIN -->
 
 <!-- ESTADO-CRONOGRAMA-INI -->
-Sin clases en el cronograma.
+Semana 2 | Clase 1.3 | 2025-09-22 | Declaración y asignación de variables. Tipos de datos.
+Semana 2 | Clase 1.4 | 2025-09-22 | Conversión de tipos. Constantes.
+Semana 2 | Clase 1.8 | 2025-09-22 | Declaración de funciones, parámetros, valores de retorno.
+Semana 2 | Clase 1.9 | 2025-09-22 | Funciones anónimas. Manejo de formularios ($_GET, $_POST).
+Semana 2 | Clase 1.10 | 2025-09-22 | Procesamiento y validación básica. include, require.
 <!-- ESTADO-CRONOGRAMA-FIN -->
 
 ## Descripción del curso
