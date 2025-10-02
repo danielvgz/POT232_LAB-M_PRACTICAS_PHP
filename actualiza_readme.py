@@ -20,7 +20,6 @@ def extraer_todas_las_clases(contenido):
     return clases
 
 def determinar_estado_actual(clases, hoy):
-    # Agrupa por semana
     semanas = {}
     for semana, clase, fecha, tema in clases:
         if semana not in semanas:
@@ -39,12 +38,11 @@ def determinar_estado_actual(clases, hoy):
             semana_actual = semana
 
     if semana_actual is not None:
-        # Si hoy es igual o mayor que la primera clase de esa semana, mostrar la última clase de esa semana <= hoy
+        # Última clase de esa semana con fecha <= hoy, o próxima clase si aún no han ocurrido
         posibles = [(clase, fecha, tema) for clase, fecha, tema in semanas[semana_actual] if fecha <= hoy]
         if posibles:
             clase_actual, fecha_actual, tema_actual = max(posibles, key=lambda x: x[1])
         else:
-            # Si no hay clases pasadas esta semana, toma la primera futura de esa semana
             clase_actual, fecha_actual, tema_actual = min(semanas[semana_actual], key=lambda x: x[1])
         return semana_actual, tema_actual, fecha_actual
     return None, None, None
@@ -71,7 +69,6 @@ def main():
         print("No se encontró ninguna clase anterior a hoy.")
         return
     nuevo_contenido = actualizar_estado_actual(contenido, semana, tema, fecha_clase, hoy)
-    # Si el contenido es diferente, escribe el archivo (esto fuerza el cambio siempre que la fecha cambie)
     if nuevo_contenido != contenido:
         with open(README, "w", encoding="utf-8") as f:
             f.write(nuevo_contenido)
