@@ -7,7 +7,7 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 <!-- ESTADO-ACTUAL-FIN -->
 
 <!-- ESTADO-SEMANA-PASADA-INI -->
-### Última semana dictada
+### Clase pasada
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
