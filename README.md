@@ -2,15 +2,9 @@
 
 Bienvenido al repositorio de prácticas del laboratorio de **PHP** para la Sección 336.  
 Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante las 16 semanas del curso.
-
 <!-- ESTADO-ACTUAL-INI -->
-**Fecha de hoy:** 
-
-| Semana actual | Última clase                          | Fecha última clase |
-|:-------------:|:-------------------------------------:|:-----------------:|
-|      3        | Operadores aritméticos, de asignación, comparación, lógicos.    |    03/10/2025     |
+lo que sea o nada aquí
 <!-- ESTADO-ACTUAL-FIN -->
----
 
 ## Descripción del curso
 
