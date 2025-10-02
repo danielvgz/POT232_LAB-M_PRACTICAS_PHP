@@ -54,14 +54,12 @@ def main():
     nuevo_contenido = actualizar_fecha(contenido, hoy)
     # Extrae clases y actualiza estado cronograma
     clases = extraer_clases(nuevo_contenido)
-    nuevo_contenido = actualizar_estado_cronograma(nuevo_contenido, clases, hoy)
-    # Escribe el archivo si hay cambios
+   nuevo_contenido = actualizar_estado_cronograma_simple(contenido, clases, hoy)
     if nuevo_contenido != contenido:
         with open(README, "w", encoding="utf-8") as f:
             f.write(nuevo_contenido)
         print("README actualizado correctamente.")
     else:
         print("No hubo cambios en el README.")
-
 if __name__ == "__main__":
     main()
