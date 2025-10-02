@@ -14,7 +14,7 @@ def extraer_clases(contenido):
             try:
                 fecha_obj = datetime.datetime.strptime(fecha.strip(), "%Y-%m-%d").date()
                 clases.append({
-                    "semana": semana,
+                    "semana": int(semana),
                     "clase": clase,
                     "fecha": fecha_obj,
                     "tema": tema.strip()
@@ -23,23 +23,24 @@ def extraer_clases(contenido):
                 continue
     return clases
 
-def clases_semana_actual(clases, hoy):
+def clases_semana_a_mostrar(clases, hoy):
     clases_ordenadas = sorted(clases, key=lambda c: c["fecha"])
+    # Todas las clases pasadas (<= hoy)
     pasadas = [c for c in clases_ordenadas if c["fecha"] <= hoy]
     if pasadas:
         semana_objetivo = pasadas[-1]["semana"]
-        resultado = [c for c in clases_ordenadas if c["semana"] == semana_objetivo]
-    else:
-        futuras = [c for c in clases_ordenadas if c["fecha"] > hoy]
-        if futuras:
-            semana_objetivo = futuras[0]["semana"]
-            resultado = [c for c in clases_ordenadas if c["semana"] == semana_objetivo]
-        else:
-            resultado = []
-    return resultado
+        # Muestra todas las clases de esa semana
+        return [c for c in clases_ordenadas if c["semana"] == semana_objetivo]
+    # Si no hay pasadas, busca la semana más próxima
+    futuras = [c for c in clases_ordenadas if c["fecha"] > hoy]
+    if futuras:
+        semana_objetivo = futuras[0]["semana"]
+        return [c for c in clases_ordenadas if c["semana"] == semana_objetivo]
+    # Si no hay ninguna clase
+    return []
 
 def actualizar_estado_cronograma_simple(contenido, clases, hoy):
-    activas = clases_semana_actual(clases, hoy)
+    activas = clases_semana_a_mostrar(clases, hoy)
     if not activas:
         bloque = "Sin clases en el cronograma."
     else:
