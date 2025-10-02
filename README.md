@@ -3,7 +3,8 @@
 Bienvenido al repositorio de prácticas del laboratorio de **PHP** para la Sección 336.  
 Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante las 16 semanas del curso.
 <!-- ESTADO-ACTUAL-INI -->
-{bloque}<!-- ESTADO-ACTUAL-FIN -->
+**Fecha de hoy:** 02/10/2025
+<!-- ESTADO-ACTUAL-FIN -->
 
 ## Descripción del curso
 
