@@ -28,12 +28,11 @@ def clases_ultima_semana_pasada(clases, hoy):
     return []
 
 def clases_proxima_semana(clases, hoy):
-    # Busca la próxima clase (fecha > hoy)
     futuras = [c for c in clases if c["fecha"] > hoy]
     if futuras:
         futuras = sorted(futuras, key=lambda c: c["fecha"])
-        # Si la próxima clase es mayor a 2 días de hoy, muestra toda esa semana
-        if (futuras[0]["fecha"] - hoy).days > 2:
+        dias_hasta_proxima = (futuras[0]["fecha"] - hoy).days
+        if dias_hasta_proxima > 2:
             semana = futuras[0]["semana"]
             return [c for c in clases if c["semana"] == semana]
     return []
@@ -77,7 +76,10 @@ def main():
 
     # Estado 2: Próxima semana (si falta más de 2 días)
     proximas = clases_proxima_semana(clases, hoy)
-    bloque2 = "### Próxima semana de clase (faltan más de 2 días)\n\n" + tabla_markdown(proximas)
+    if proximas:  # solo muestra si hay próximas y faltan más de 2 días
+        bloque2 = "### Próxima semana de clase (faltan más de 2 días)\n\n" + tabla_markdown(proximas)
+    else:
+        bloque2 = ""
     contenido = actualizar_estado_tabla(contenido, bloque2, "SEMANA-PROXIMA")
 
     with open(README, "w", encoding="utf-8") as f:
