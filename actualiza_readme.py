@@ -27,7 +27,7 @@ def extraer_todas_las_clases(contenido):
 
 def actualizar_estado_actual(contenido, semana, tipo, tema, fecha_clase, hoy):
     tabla = (
-        f"**Fecha de hoy:** {hoy.strftime('%d/%m/%Y')}\n\n"
+        f"**Fecha de hoy:** {today.strftime('%Y-%m-%d')}\n\n"
         f"| Semana actual | {tipo} | Fecha |\n"
         f"|:-------------:|:--------------------------------------------------:|:----------:|\n"
         f"| {semana:^13} | {tema:^50} | {fecha_clase.strftime('%d/%m/%Y'):^10} |\n"
