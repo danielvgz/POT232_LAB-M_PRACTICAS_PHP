@@ -4,7 +4,7 @@ import datetime
 README = "README.md"
 
 def actualizar_fecha(contenido, hoy):
-    bloque = f"**Fecha de hoy:** {today.strftime('%d/%m/%Y')}\n"
+    bloque = f"**Fecha de hoy:** {hoy.strftime('%d/%m/%Y')}\n"
     patron = re.compile(r"(<!-- ESTADO-ACTUAL-INI -->)[\s\S]*?(<!-- ESTADO-ACTUAL-FIN -->)", re.DOTALL)
     nuevo_contenido = re.sub(patron, rf"\1\n{bloque}\2", contenido)
     return nuevo_contenido
