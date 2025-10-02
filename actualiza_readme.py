@@ -25,14 +25,15 @@ def extraer_todas_las_clases(contenido):
     clases.sort(key=lambda x: x[2])
     return clases
 
-def encontrar_ultima_clase(clases, hoy):
+def encontrar_clase_actual(clases, hoy):
     """
-    Retorna la info de la última clase hasta la fecha de hoy.
+    Retorna la info de la clase más reciente cuya fecha sea <= hoy.
     """
-    clases_anteriores = [c for c in clases if c[2] <= hoy]
-    if not clases_anteriores:
+    clases_pasadas = [c for c in clases if c[2] <= hoy]
+    if not clases_pasadas:
         return None
-    return max(clases_anteriores, key=lambda c: c[2])
+    # Tomamos la clase con la fecha más reciente <= hoy
+    return max(clases_pasadas, key=lambda c: c[2])
 
 def actualizar_estado_actual(contenido, semana, tema, fecha_clase, hoy):
     """
@@ -56,12 +57,12 @@ def main():
         contenido = f.read()
 
     clases = extraer_todas_las_clases(contenido)
-    ultima = encontrar_ultima_clase(clases, hoy)
-    if not ultima:
-        print("No se encontró ninguna clase anterior a hoy.")
+    clase_actual = encontrar_clase_actual(clases, hoy)
+    if not clase_actual:
+        print("No se encontró ninguna clase para la fecha de hoy o antes.")
         return
 
-    semana, _, fecha_clase, tema = ultima
+    semana, _, fecha_clase, tema = clase_actual
     nuevo_contenido = actualizar_estado_actual(contenido, semana, tema, fecha_clase, hoy)
 
     with open(README, "w", encoding="utf-8") as f:
