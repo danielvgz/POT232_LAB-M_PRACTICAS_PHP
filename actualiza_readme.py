@@ -24,16 +24,15 @@ def extraer_clases(contenido):
     return clases
 
 def clases_semana_actual(clases, hoy):
-    # Busca las clases más cercanas (en los próximos 3 días, incluyendo hoy)
     clases_ordenadas = sorted(clases, key=lambda c: c["fecha"])
-    futuras = [c for c in clases_ordenadas if c["fecha"] >= hoy and (c["fecha"] - hoy).days <= 3]
-    if futuras:
-        semana_objetivo = futuras[0]["semana"]
+    pasadas = [c for c in clases_ordenadas if c["fecha"] <= hoy]
+    if pasadas:
+        semana_objetivo = pasadas[-1]["semana"]
         resultado = [c for c in clases_ordenadas if c["semana"] == semana_objetivo]
     else:
-        pasadas = [c for c in clases_ordenadas if c["fecha"] <= hoy]
-        if pasadas:
-            semana_objetivo = pasadas[-1]["semana"]
+        futuras = [c for c in clases_ordenadas if c["fecha"] > hoy]
+        if futuras:
+            semana_objetivo = futuras[0]["semana"]
             resultado = [c for c in clases_ordenadas if c["semana"] == semana_objetivo]
         else:
             resultado = []
@@ -42,7 +41,7 @@ def clases_semana_actual(clases, hoy):
 def actualizar_estado_cronograma_simple(contenido, clases, hoy):
     activas = clases_semana_actual(clases, hoy)
     if not activas:
-        bloque = "Sin clases dictadas ni próximas en el cronograma."
+        bloque = "Sin clases en el cronograma."
     else:
         bloque = "\n".join(
             f"Semana {c['semana']} | Clase {c['clase']} | {c['fecha']} | {c['tema']}"
@@ -66,13 +65,4 @@ def main():
         contenido = f.read()
     contenido = actualizar_fecha(contenido, hoy)
     clases = extraer_clases(contenido)
-    nuevo_contenido = actualizar_estado_cronograma_simple(contenido, clases, hoy)
-    if nuevo_contenido != contenido:
-        with open(README, "w", encoding="utf-8") as f:
-            f.write(nuevo_contenido)
-        print("README actualizado correctamente.")
-    else:
-        print("No hubo cambios en el README.")
-
-if __name__ == "__main__":
-    main()
+    nuevo_contenido = actualizar_estado_cronograma_simple(contenido, clases
