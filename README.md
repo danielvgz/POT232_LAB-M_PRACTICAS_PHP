@@ -20,9 +20,7 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 <!-- ESTADO-SEMANA-PASADA-FIN -->
 
 <!-- ESTADO-SEMANA-PROXIMA-INI -->
-### Próxima semana de clase (faltan más de 2 días)
 
-_Sin clases en este estado._
 <!-- ESTADO-SEMANA-PROXIMA-FIN -->
 
 ## Descripción del curso
