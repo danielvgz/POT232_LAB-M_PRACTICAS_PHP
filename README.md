@@ -6,6 +6,8 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 **Fecha de hoy:** 02/10/2025
 <!-- ESTADO-ACTUAL-FIN -->
 
+<!-- ESTADO-CRONOGRAMA-INI --> ... <!-- ESTADO-CRONOGRAMA-FIN -->
+
 ## Descripción del curso
 
 Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el siguiente cronograma:
