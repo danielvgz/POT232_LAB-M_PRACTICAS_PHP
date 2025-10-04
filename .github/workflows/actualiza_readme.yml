@@ -1,28 +1,42 @@
 name: Actualiza estado actual en README
 
 on:
+  schedule:
+    - cron: '0 4 * * *'  # Corre todos los días a las 12:00 am hora de Caracas (GMT-4)
   workflow_dispatch:
 
 jobs:
-  actualiza-readme:
+  update-script:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - name: Configura Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      - name: Ejecuta script de actualización
+      - name: Install requirements (opcional)
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Ejecuta actualiza_readme.py
         run: python actualiza_readme.py
 
-      - name: Mostrar diff del README
-        run: git diff README.md || true
-
-      - name: Haz commit y push si hubo cambios
+      - name: Configura Git
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git diff --cached --exit-code || (git commit -m "Actualiza fecha en README.md" && git pull --rebase origin main && git push)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Haz commit si hay cambios
+        run: |
+          git add .
+          if ! git diff --cached --quiet; then
+            git commit -m "Actualización automática con actualiza_readme.py [skip ci]"
+            git push
+          else
+            echo "No hay cambios para hacer commit."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
