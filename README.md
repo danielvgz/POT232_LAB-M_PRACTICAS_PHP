@@ -3,7 +3,7 @@
 Bienvenido al repositorio de prácticas del laboratorio de **PHP** para la Sección 336.  
 Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante las 16 semanas del curso.
 <!-- ESTADO-ACTUAL-INI -->
-**Fecha de hoy:** 03/10/2025
+**Fecha de hoy:** 05/10/2025
 <!-- ESTADO-ACTUAL-FIN -->
 
 <!-- ESTADO-SEMANA-PASADA-INI -->
@@ -11,24 +11,21 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
-| 2 | 1.3 | 22/09/2025 | Declaración y asignación de variables. Tipos de datos. |
-| 2 | 1.4 | 22/09/2025 | Conversión de tipos. Constantes. |
-| 2 | 1.8 | 22/09/2025 | Declaración de funciones, parámetros, valores de retorno. |
-| 2 | 1.9 | 22/09/2025 | Funciones anónimas. Manejo de formularios ($_GET, $_POST). |
-| 2 | 1.10 | 22/09/2025 | Procesamiento y validación básica. include, require. |
+| 3 | 1.5 | 03/10/2025 | Operadores aritméticos, de asignación, comparación, lógicos. |
+| 3 | 1.6 | 03/10/2025 | Estructuras if/else, switch. |
+| 3 | 1.7 | 03/10/2025 | Bucles for, while, do/while, foreach. break y continue. |
 
 <!-- ESTADO-SEMANA-PASADA-FIN -->
 
 <!-- ESTADO-SEMANA-PROXIMA-INI -->
 ### Próxima semana de clase
 
-**Próxima fecha:** 03/10/2025
+**Próxima fecha:** 21/10/2025
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
-| 3 | 1.5 | 03/10/2025 | Operadores aritméticos, de asignación, comparación, lógicos. |
-| 3 | 1.6 | 03/10/2025 | Estructuras if/else, switch. |
-| 3 | 1.7 | 03/10/2025 | Bucles for, while, do/while, foreach. break y continue. |
+| 5 | 2.1 | 21/10/2025 | Introducción a DB relacionales, SQL básico (SELECT, INSERT). |
+| 5 | 2.2 | 21/10/2025 | PHP Data Objects (PDO): Conexión a MySQL, manejo de errores. |
 
 <!-- ESTADO-SEMANA-PROXIMA-FIN -->
 
