@@ -128,13 +128,6 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 
 ---
 
-## Progreso actual
-
-- **Semana actual:** 3
-- **Hoy:** Jueves, semana de operadores y estructuras de control
-- El repositorio se irá actualizando semanalmente con nuevas prácticas y recursos.
-
----
 
 ## Prácticas y archivos
 
