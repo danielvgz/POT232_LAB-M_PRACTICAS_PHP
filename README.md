@@ -3,7 +3,7 @@
 Bienvenido al repositorio de prácticas del laboratorio de **PHP** para la Sección 336.  
 Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante las 16 semanas del curso.
 <!-- ESTADO-ACTUAL-INI -->
-**Fecha de hoy:** 08/10/2025
+**Fecha de hoy:** 09/10/2025
 <!-- ESTADO-ACTUAL-FIN -->
 
 <!-- ESTADO-SEMANA-PASADA-INI -->
@@ -11,9 +11,9 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
-| 3 | 1.5 | 03/10/2025 | Operadores aritméticos, de asignación, comparación, lógicos. |
-| 3 | 1.6 | 03/10/2025 | Estructuras if/else, switch. |
-| 3 | 1.7 | 03/10/2025 | Bucles for, while, do/while, foreach. break y continue. |
+| 4 | 1.8 | 22/10/2025 | Declaración de funciones, parámetros, valores de retorno. |
+| 4 | 1.9 | 06/10/2025 | Funciones anónimas. Manejo de formularios ($_GET, $_POST). |
+| 4 | 1.10 | 07/10/2025 | Procesamiento y validación básica. include, require. |
 
 <!-- ESTADO-SEMANA-PASADA-FIN -->
 
