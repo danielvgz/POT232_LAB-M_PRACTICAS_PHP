@@ -293,8 +293,6 @@
         'ciudad' => 'Ciudad de México',
         'email' => 'juan.carlos@email.com',
         'telefono' => '+52 55 1234-5678',
-        'genero1' => 'Masculino',
-        'genero' => 'femeino',
         
     );
     
@@ -338,8 +336,7 @@
             $mi_ciudad = isset($_GET['ciudad']) && !empty($_GET['ciudad']) ? $_GET['ciudad'] : $defaults['ciudad'];
             $mi_email = isset($_GET['email']) && !empty($_GET['email']) ? $_GET['email'] : $defaults['email'];
             $mi_telefono = isset($_GET['telefono']) && !empty($_GET['telefono']) ? $_GET['telefono'] : $defaults['telefono'];
-            $genero = isset($_GET['genero1']) && !empty($_GET['genero1']) ? $_GET['genero1'] : $defaults['genero1'];
-            
+            $opcion = isset($_GET['opcion']) && !empty($_GET['opcion']) ? $_GET['opcion'] : $defaults['opcion'];
             $actualizado = true;
         } elseif ($_GET['accion'] === 'restablecer') {
             // Usar valores por defecto
@@ -350,7 +347,8 @@
             $mi_ciudad = $defaults['ciudad'];
             $mi_email = $defaults['email'];
             $mi_telefono = $defaults['telefono'];
-            $genero = $defaults['genero1'];
+            $opcion = isset($_GET['opcion']) && !empty($_GET['opcion']) ? $_GET['opcion'] : $defaults['opcion'];
+
         }
     } else {
         // Primera carga - usar valores por defecto
@@ -361,7 +359,6 @@
         $mi_ciudad = $defaults['ciudad'];
         $mi_email = $defaults['email'];
         $mi_telefono = $defaults['telefono'];
-        $genero = $defaults['genero2'];
     }
     
     // Calcular datos derivados
@@ -402,8 +399,8 @@
                 <div class="dato">
                     <span class="dato-label">👤 Nombre Completo</span>
                     <span class="dato-valor"><?php echo htmlspecialchars($mi_nombre); ?></span>
-                </div>|edad_exacta['meses']; ?> meses y <?php echo $edad_exacta['dias'] ; 
-                        ?> días
+                </div> <b> <?php echo $edad_exacta['años'].' años'; ?> <?php echo $edad_exacta['meses']; ?> meses y <?php echo $edad_exacta['dias'] ; 
+                        ?> días </b>
                         <br><small>Total: <?php echo number_format($edad_exacta['total_dias']); ?> días de vida</small>
                     </div>
                 </div>
@@ -445,7 +442,14 @@
 
                 <div class="dato">
                     <span class="dato-label"> Genero</span>
-                    <?php echo htmlspecialchars($genero); ?>
+                    <?php 
+                        // Verifica si el parámetro 'opcion' está presente en la URL
+                          if (isset($_GET['opcion'])) {
+                                echo "El valor del parámetro 'genero' es: " . htmlspecialchars($_GET['opcion']);
+                            } else {
+                                echo "No se ha enviado el parámetro 'genero' por GET.";
+                            }
+                    ?>
                    
                 </div>
             </div>
@@ -495,13 +499,19 @@
                         <label for="telefono">📞 Teléfono</label>
                         <input type="tel" id="telefono" name="telefono" value="<?php echo htmlspecialchars($mi_telefono); ?>" placeholder="+52 55 1234-5678" required>
                     </div>
-
+                        <!--Agregamos el form group para los inputs type "radio" -->
                     <div class="form-group">
-                       
-                    <input type="tel" id="telefono" name="genero" value="femenino" placeholder="femenino" required>
-
-                      
-                       </select>
+                           <label for="genero"> Genero</label>
+                          <label>
+                           <input type="radio" name="opcion" value="Masculino" <?php if(isset($opcion) && $opcion=="Masculino") echo "checked"; ?>>
+                           Masculino
+                       </label>
+                       <br>
+                       <label>
+                           <input type="radio" name="opcion" value="Femenino" <?php if(isset($opcion) && $opcion=="Femenino") echo "checked"; ?>>
+                           Femenino
+                       </label>
+                     </div>
                     </div>
                 </div>
                 
