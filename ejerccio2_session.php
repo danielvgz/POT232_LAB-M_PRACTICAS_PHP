@@ -19,6 +19,12 @@ if (!isset($_SESSION['perfil'])) {
     $_SESSION['perfil'] = $defaults;
 }
 
+$_SESSION = [];
+if (ini_get('session.use_cookies')) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+}
+
 // Función para calcular edad exacta
 function calcular_edad_exacta($fecha_nacimiento) {
     $hoy = new DateTime();
