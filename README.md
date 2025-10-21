@@ -3,7 +3,7 @@
 Bienvenido al repositorio de prácticas del laboratorio de **PHP** para la Sección 336.  
 Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante las 16 semanas del curso.
 <!-- ESTADO-ACTUAL-INI -->
-**Fecha de hoy:** 20/10/2025
+**Fecha de hoy:** 21/10/2025
 <!-- ESTADO-ACTUAL-FIN -->
 
 <!-- ESTADO-SEMANA-PASADA-INI -->
@@ -11,21 +11,21 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
-| 4 | 1.8 | 22/10/2025 | Declaración de funciones, parámetros, valores de retorno. |
-| 4 | 1.9 | 06/10/2025 | Funciones anónimas. Manejo de formularios ($_GET, $_POST). |
-| 4 | 1.10 | 07/10/2025 | Procesamiento y validación básica. include, require. |
+| 5 | 2.1 | 21/10/2025 | Introducción a DB relacionales, SQL básico (SELECT, INSERT). |
+| 5 | 2.2 | 21/10/2025 | PHP Data Objects (PDO): Conexión a MySQL, manejo de errores. |
 
 <!-- ESTADO-SEMANA-PASADA-FIN -->
 
 <!-- ESTADO-SEMANA-PROXIMA-INI -->
 ### Próxima semana de clase
 
-**Próxima fecha:** 21/10/2025
+**Próxima fecha:** 22/10/2025
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
-| 5 | 2.1 | 21/10/2025 | Introducción a DB relacionales, SQL básico (SELECT, INSERT). |
-| 5 | 2.2 | 21/10/2025 | PHP Data Objects (PDO): Conexión a MySQL, manejo de errores. |
+| 4 | 1.8 | 22/10/2025 | Declaración de funciones, parámetros, valores de retorno. |
+| 4 | 1.9 | 06/10/2025 | Funciones anónimas. Manejo de formularios ($_GET, $_POST). |
+| 4 | 1.10 | 07/10/2025 | Procesamiento y validación básica. include, require. |
 
 <!-- ESTADO-SEMANA-PROXIMA-FIN -->
 
