@@ -3,7 +3,7 @@
 Bienvenido al repositorio de prácticas del laboratorio de **PHP** para la Sección 336.  
 Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante las 16 semanas del curso.
 <!-- ESTADO-ACTUAL-INI -->
-**Fecha de hoy:** 21/10/2025
+**Fecha de hoy:** 22/10/2025
 <!-- ESTADO-ACTUAL-FIN -->
 
 <!-- ESTADO-SEMANA-PASADA-INI -->
@@ -19,13 +19,12 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 <!-- ESTADO-SEMANA-PROXIMA-INI -->
 ### Próxima semana de clase
 
-**Próxima fecha:** 22/10/2025
+**Próxima fecha:** 28/10/2025
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
-| 4 | 1.8 | 22/10/2025 | Declaración de funciones, parámetros, valores de retorno. |
-| 4 | 1.9 | 06/10/2025 | Funciones anónimas. Manejo de formularios ($_GET, $_POST). |
-| 4 | 1.10 | 07/10/2025 | Procesamiento y validación básica. include, require. |
+| 6 | 2.3 | 28/10/2025 | Operaciones INSERT, SELECT, UPDATE, DELETE con PDO. |
+| 6 | 2.4 | 28/10/2025 | Consultas preparadas, prevención SQLi, Fetching de datos. |
 
 <!-- ESTADO-SEMANA-PROXIMA-FIN -->
 
