@@ -3,7 +3,7 @@
 Bienvenido al repositorio de prácticas del laboratorio de **PHP** para la Sección 336.  
 Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante las 16 semanas del curso.
 <!-- ESTADO-ACTUAL-INI -->
-**Fecha de hoy:** 27/10/2025
+**Fecha de hoy:** 28/10/2025
 <!-- ESTADO-ACTUAL-FIN -->
 
 <!-- ESTADO-SEMANA-PASADA-INI -->
@@ -11,20 +11,20 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
-| 5 | 2.1 | 21/10/2025 | Introducción a DB relacionales, SQL básico (SELECT, INSERT). |
-| 5 | 2.2 | 21/10/2025 | PHP Data Objects (PDO): Conexión a MySQL, manejo de errores. |
+| 6 | 2.3 | 28/10/2025 | Operaciones INSERT, SELECT, UPDATE, DELETE con PDO. |
+| 6 | 2.4 | 28/10/2025 | Consultas preparadas, prevención SQLi, Fetching de datos. |
 
 <!-- ESTADO-SEMANA-PASADA-FIN -->
 
 <!-- ESTADO-SEMANA-PROXIMA-INI -->
 ### Próxima semana de clase
 
-**Próxima fecha:** 28/10/2025
+**Próxima fecha:** 04/11/2025
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
-| 6 | 2.3 | 28/10/2025 | Operaciones INSERT, SELECT, UPDATE, DELETE con PDO. |
-| 6 | 2.4 | 28/10/2025 | Consultas preparadas, prevención SQLi, Fetching de datos. |
+| 8 | 2.5 | 04/11/2025 | Clases, objetos, propiedades, métodos. Constructores, this. |
+| 8 | 2.6 | 04/11/2025 | Herencia, interfaces, traits, métodos estáticos. Namespaces. |
 
 <!-- ESTADO-SEMANA-PROXIMA-FIN -->
 
