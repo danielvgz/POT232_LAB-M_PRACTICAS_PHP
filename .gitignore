@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Laravel
+laravel-vue-app/vendor/
+laravel-vue-app/node_modules/
+laravel-vue-app/.env
+laravel-vue-app/storage/*.key
+laravel-vue-app/.phpunit.result.cache
+laravel-vue-app/public/hot
+laravel-vue-app/public/storage
+laravel-vue-app/storage/logs/*.log
+
+# Build artifacts
+laravel-vue-app/public/build/
+laravel-vue-app/public/mix-manifest.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+composer-config.json
