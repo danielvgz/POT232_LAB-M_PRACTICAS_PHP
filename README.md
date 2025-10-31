@@ -141,6 +141,33 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 Cada semana se agregan carpetas y archivos con ejemplos de código, ejercicios y soluciones.  
 Consulta el árbol de archivos del repositorio para ver las prácticas correspondientes a cada semana y módulo.
 
+### 📦 Proyecto Laravel + Vue.js
+
+El directorio `/laravel-vue-app/` contiene un proyecto completo de **Laravel 11 + Vue.js 3** con:
+
+- ✅ **Laravel Breeze** para autenticación
+- ✅ **Inertia.js** para integración SPA sin API
+- ✅ **Vue.js 3** con Composition API
+- ✅ **Tailwind CSS** para estilos
+- ✅ **Vite** como herramienta de build
+- ✅ Sistema completo de autenticación (login, registro, recuperación de contraseña)
+- ✅ Gestión de perfil de usuario
+
+**Para ejecutar el proyecto:**
+```bash
+cd laravel-vue-app
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+touch database/database.sqlite
+php artisan migrate
+php artisan serve    # Backend (terminal 1)
+npm run dev          # Frontend (terminal 2)
+```
+
+Ver [README del proyecto](laravel-vue-app/README.md) para más detalles.
+
 ---
 
 ## Calendario de evaluaciones
