@@ -143,7 +143,7 @@ Consulta el árbol de archivos del repositorio para ver las prácticas correspon
 
 ### 📦 Proyecto Laravel + Vue.js
 
-El directorio `/laravel-vue-app/` contiene un proyecto completo de **Laravel 11 + Vue.js 3** con:
+El directorio `/POT232_PSTII/Laravel/` contiene un proyecto completo de **Laravel 11 + Vue.js 3** con:
 
 - ✅ **Laravel Breeze** para autenticación
 - ✅ **Inertia.js** para integración SPA sin API
@@ -155,7 +155,7 @@ El directorio `/laravel-vue-app/` contiene un proyecto completo de **Laravel 11 
 
 **Para ejecutar el proyecto:**
 ```bash
-cd laravel-vue-app
+cd POT232_PSTII/Laravel
 composer install
 npm install
 cp .env.example .env
@@ -166,7 +166,7 @@ php artisan serve    # Backend (terminal 1)
 npm run dev          # Frontend (terminal 2)
 ```
 
-Ver [README del proyecto](laravel-vue-app/README.md) para más detalles.
+Ver [README del proyecto](POT232_PSTII/Laravel/README.md) para más detalles.
 
 ---
 

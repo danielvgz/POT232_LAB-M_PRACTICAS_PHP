@@ -6,18 +6,18 @@ __pycache__/
 .Python
 
 # Laravel
-laravel-vue-app/vendor/
-laravel-vue-app/node_modules/
-laravel-vue-app/.env
-laravel-vue-app/storage/*.key
-laravel-vue-app/.phpunit.result.cache
-laravel-vue-app/public/hot
-laravel-vue-app/public/storage
-laravel-vue-app/storage/logs/*.log
+POT232_PSTII/Laravel/vendor/
+POT232_PSTII/Laravel/node_modules/
+POT232_PSTII/Laravel/.env
+POT232_PSTII/Laravel/storage/*.key
+POT232_PSTII/Laravel/.phpunit.result.cache
+POT232_PSTII/Laravel/public/hot
+POT232_PSTII/Laravel/public/storage
+POT232_PSTII/Laravel/storage/logs/*.log
 
 # Build artifacts
-laravel-vue-app/public/build/
-laravel-vue-app/public/mix-manifest.json
+POT232_PSTII/Laravel/public/build/
+POT232_PSTII/Laravel/public/mix-manifest.json
 
 # IDE
 .idea/
