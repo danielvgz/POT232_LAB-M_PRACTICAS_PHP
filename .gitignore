@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Laravel
+POT232_PSTII/Laravel/vendor/
+POT232_PSTII/Laravel/node_modules/
+POT232_PSTII/Laravel/.env
+POT232_PSTII/Laravel/storage/*.key
+POT232_PSTII/Laravel/.phpunit.result.cache
+POT232_PSTII/Laravel/public/hot
+POT232_PSTII/Laravel/public/storage
+POT232_PSTII/Laravel/storage/logs/*.log
+
+# Build artifacts
+POT232_PSTII/Laravel/public/build/
+POT232_PSTII/Laravel/public/mix-manifest.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+composer-config.json
