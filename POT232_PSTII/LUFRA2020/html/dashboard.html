@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard — MiApp</title>
+  <!-- Tailwind Play CDN for quick prototyping (no build step) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <header class="bg-gradient-to-r from-sky-600 to-blue-500 text-white">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L3 7v7c0 5 4 9 9 9s9-4 9-9V7l-9-5z" fill="white" opacity=".9"/>
+        </svg>
+        <div>
+          <div class="font-semibold">MiApp</div>
+          <div class="text-sm opacity-90">Panel de control</div>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-3">
+        <a href="../../index.php" class="text-sm hover:underline">Inicio</a>
+        <a href="../../login.php" class="text-sm hover:underline">Login</a>
+        <a href="../../registro.php" class="text-sm hover:underline">Registro</a>
+        <a href="logout.php" class="ml-3 inline-block bg-white text-blue-600 px-3 py-1 rounded shadow">Cerrar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <section class="bg-white rounded-lg shadow p-6">
+      <h1 class="text-2xl font-bold">Bienvenido</h1>
+      <p class="text-gray-600 mt-2">Este es un dashboard de ejemplo construido con Tailwind CSS (CDN). Para proteger esta página usa la versión PHP que comprueba sesión.</p>
+      <div class="mt-4">
+        <a href="#acciones" class="inline-block bg-blue-600 text-white px-4 py-2 rounded">Ver acciones</a>
+      </div>
+    </section>
+
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+      <article class="bg-white rounded-lg shadow p-4">
+        <h2 class="text-lg font-semibold">Usuarios</h2>
+        <div class="mt-3 text-3xl font-bold">124</div>
+        <div class="text-sm text-gray-500">Activos</div>
+      </article>
+
+      <article class="bg-white rounded-lg shadow p-4">
+        <h2 class="text-lg font-semibold">Mensajes</h2>
+        <div class="mt-3 text-3xl font-bold">37</div>
+        <div class="text-sm text-gray-500">Sin leer</div>
+      </article>
+
+      <article class="bg-white rounded-lg shadow p-4">
+        <h2 class="text-lg font-semibold">Configuración</h2>
+        <p class="text-gray-600 mt-2">Accede a ajustes y preferencias.</p>
+        <a href="#" class="mt-3 inline-block text-sm text-blue-600 hover:underline">Abrir configuración →</a>
+      </article>
+    </section>
+
+    <section id="acciones" class="bg-white rounded-lg shadow p-6 mt-6">
+      <h3 class="text-lg font-semibold">Acciones recientes</h3>
+      <ul class="list-disc pl-5 mt-3 text-gray-700">
+        <li>Inicio de sesión: usuario@example.com</li>
+        <li>Cambios en perfil: hace 2 días</li>
+        <li>Backup automático: ayer</li>
+      </ul>
+    </section>
+
+    <footer class="mt-8 text-center text-sm text-gray-500">&copy; <span id="year"></span> MiApp</footer>
+  </main>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+</body>
+</html>

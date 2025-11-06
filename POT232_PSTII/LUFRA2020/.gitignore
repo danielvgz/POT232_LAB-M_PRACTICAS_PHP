@@ -1,0 +1,53 @@
+# .gitignore para el directorio LUFRA2020
+# Ignorar archivos de sistema, IDEs, dependencias y artefactos de build
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# IDEs y editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+yarn-debug.log*
+
+# Composer / PHP
+vendor/
+composer.lock
+
+# Laravel / Framework
+.env
+.env.*
+/storage/*
+!/storage/.gitkeep
+/bootstrap/cache/*
+/public/hot
+/public/storage
+
+# Logs, caches y resultados de pruebas
+*.log
+*.cache
+coverage/
+.phpunit.result.cache
+phpunit.xml.cache
+
+# Bases de datos (archivos binarios/locales) - mantener schema.sql en db/
+db/*.sqlite
+db/*.sqlite3
+db/*.db
+db/*.log
+
+# Build / distribución
+dist/
+build/
+*.map
+
+# Otros
+Thumbs.db
+desktop.ini

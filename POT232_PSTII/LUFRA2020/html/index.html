@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Proyecto sociotecnologico II</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Opcional: configuración básica de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-800">
+    <header class="bg-white shadow">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+            <h1 class="text-xl font-semibold">Inicio</h1>
+            <nav class="space-x-4 text-sm">
+                <a href="#" class="text-gray-600 hover:text-primary">Inicio</a>
+                <a href="#" class="text-gray-600 hover:text-primary">Acerca</a>
+                <a href="#" class="text-gray-600 hover:text-primary">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-12">
+        <section class="bg-white rounded-lg shadow p-8">
+            <h2 class="text-2xl font-bold mb-2">Productos y servicios</h2>
+            <p class="text-gray-600 mb-6">
+                Catalogo de productos
+            </p>
+
+            <div class="flex gap-3">
+                <button class="px-4 py-2 bg-primary text-white rounded hover:bg-blue-600">Acción primaria</button>
+                <button class="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100">Secundaria</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 py-6 bg-white border-t">
+        <div class="max-w-4xl mx-auto px-6 text-sm text-gray-500">
+            © <span id="year"></span> PST II — Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        // Fecha dinámica en el footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
