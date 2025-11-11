@@ -3,7 +3,7 @@
 Bienvenido al repositorio de prácticas del laboratorio de **PHP** para la Sección 336.  
 Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante las 16 semanas del curso.
 <!-- ESTADO-ACTUAL-INI -->
-**Fecha de hoy:** 10/11/2025
+**Fecha de hoy:** 11/11/2025
 <!-- ESTADO-ACTUAL-FIN -->
 
 <!-- ESTADO-SEMANA-PASADA-INI -->
@@ -11,20 +11,20 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
-| 8 | 2.5 | 04/11/2025 | Clases, objetos, propiedades, métodos. Constructores, this. |
-| 8 | 2.6 | 04/11/2025 | Herencia, interfaces, traits, métodos estáticos. Namespaces. |
+| 9 | 2.7 | 11/11/2025 | Sesiones ($_SESSION), cookies ($_COOKIE). Manejo de errores. |
+| 9 | 3.1 | 11/11/2025 | Introducción a APIs REST: conceptos, verbos, JSON. |
 
 <!-- ESTADO-SEMANA-PASADA-FIN -->
 
 <!-- ESTADO-SEMANA-PROXIMA-INI -->
 ### Próxima semana de clase
 
-**Próxima fecha:** 11/11/2025
+**Próxima fecha:** 18/11/2025
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
-| 9 | 2.7 | 11/11/2025 | Sesiones ($_SESSION), cookies ($_COOKIE). Manejo de errores. |
-| 9 | 3.1 | 11/11/2025 | Introducción a APIs REST: conceptos, verbos, JSON. |
+| 10 | 3.2 | 18/11/2025 | Endpoints GET y POST para Tareas. |
+| 10 | 3.3 | 18/11/2025 | Endpoints PUT y DELETE. Autenticación/Autorización básica. |
 
 <!-- ESTADO-SEMANA-PROXIMA-FIN -->
 
