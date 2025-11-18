@@ -3,7 +3,7 @@
 Bienvenido al repositorio de prácticas del laboratorio de **PHP** para la Sección 336.  
 Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante las 16 semanas del curso.
 <!-- ESTADO-ACTUAL-INI -->
-**Fecha de hoy:** 17/11/2025
+**Fecha de hoy:** 18/11/2025
 <!-- ESTADO-ACTUAL-FIN -->
 
 <!-- ESTADO-SEMANA-PASADA-INI -->
@@ -11,20 +11,20 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
-| 9 | 2.7 | 11/11/2025 | Sesiones ($_SESSION), cookies ($_COOKIE). Manejo de errores. |
-| 9 | 3.1 | 11/11/2025 | Introducción a APIs REST: conceptos, verbos, JSON. |
+| 11 | 3.4 | 18/11/2025 | CORS y seguridad en APIs. |
+| 11 | 4.1 | 28/11/2025 | ¿Qué es Vue.js? Ventajas. Integración con CDN. Instancia de Vue. |
 
 <!-- ESTADO-SEMANA-PASADA-FIN -->
 
 <!-- ESTADO-SEMANA-PROXIMA-INI -->
 ### Próxima semana de clase
 
-**Próxima fecha:** 18/11/2025
+**Próxima fecha:** 28/11/2025
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
-| 10 | 3.2 | 18/11/2025 | Endpoints GET y POST para Tareas. |
-| 10 | 3.3 | 18/11/2025 | Endpoints PUT y DELETE. Autenticación/Autorización básica. |
+| 11 | 3.4 | 18/11/2025 | CORS y seguridad en APIs. |
+| 11 | 4.1 | 28/11/2025 | ¿Qué es Vue.js? Ventajas. Integración con CDN. Instancia de Vue. |
 
 <!-- ESTADO-SEMANA-PROXIMA-FIN -->
 
