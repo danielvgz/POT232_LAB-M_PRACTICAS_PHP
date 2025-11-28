@@ -3,7 +3,7 @@
 Bienvenido al repositorio de prácticas del laboratorio de **PHP** para la Sección 336.  
 Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante las 16 semanas del curso.
 <!-- ESTADO-ACTUAL-INI -->
-**Fecha de hoy:** 27/11/2025
+**Fecha de hoy:** 28/11/2025
 <!-- ESTADO-ACTUAL-FIN -->
 
 <!-- ESTADO-SEMANA-PASADA-INI -->
@@ -11,20 +11,20 @@ Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante 
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
-| 11 | 3.4 | 18/11/2025 | CORS y seguridad en APIs. |
-| 11 | 4.1 | 28/11/2025 | ¿Qué es Vue.js? Ventajas. Integración con CDN. Instancia de Vue. |
+| 12 | 4.2 | 28/11/2025 | Interpolación, directivas, datos reactivos, methods, computed. |
+| 12 | 4.3 | 28/11/2025 | v-for, eventos, componentes, props. |
 
 <!-- ESTADO-SEMANA-PASADA-FIN -->
 
 <!-- ESTADO-SEMANA-PROXIMA-INI -->
 ### Próxima semana de clase
 
-**Próxima fecha:** 28/11/2025
+**Próxima fecha:** 09/12/2025
 
 | Semana | Clase | Fecha | Contenido |
 |:------:|:------:|:----------:|:-------------------------------|
-| 11 | 3.4 | 18/11/2025 | CORS y seguridad en APIs. |
-| 11 | 4.1 | 28/11/2025 | ¿Qué es Vue.js? Ventajas. Integración con CDN. Instancia de Vue. |
+| 13 | 5.1 | 09/12/2025 | Vue CLI, Single File Components. Fetch API, Axios. |
+| 13 | 5.2 | 09/12/2025 | Peticiones GET/POST/PUT/DELETE a la API PHP. |
 
 <!-- ESTADO-SEMANA-PROXIMA-FIN -->
 
