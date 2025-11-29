@@ -2,7 +2,7 @@
 require_once 'db_connect.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-$st = $pdo->prepare('SELECT * FROM users WHERE id = ?');
+$st = $pdo->prepare('SELECT * FROM personas WHERE id = ?');
 $st->execute([$id]);
 $user = $st->fetch();
 if (!$user) {
@@ -30,7 +30,7 @@ if (!$user) {
     </div>
     <div class="mb-3">
       <label class="form-label">Cédula</label>
-      <input id="cedula" type="text" name="cedula" class="form-control" required maxlength="10" value="<?php echo htmlspecialchars($user['cedula'] ?? ''); ?>">
+      <input id="cedula" type="text" name="cedula" class="form-control" required maxlength="13" value="<?php echo htmlspecialchars($user['cedula'] ?? ''); ?>">
       <div class="invalid-feedback" id="error-cedula"></div>
     </div>
     <div class="mb-3">

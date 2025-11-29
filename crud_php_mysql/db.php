@@ -15,29 +15,27 @@ if ($USE_SQLITE) {
         $pdo->exec('PRAGMA foreign_keys = ON');
 
         // Crear la tabla si no existe (estructura base)
-        $pdo->exec("CREATE TABLE IF NOT EXISTS users (
+        $pdo->exec("CREATE TABLE IF NOT EXISTS personas (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nombre TEXT NOT NULL,
-            email TEXT NOT NULL,
-            telefono TEXT
+            nombre TEXT NOT NULL
         );");
 
         // Asegurar que las columnas nuevas existen (ALTER TABLE ADD COLUMN en SQLite)
-        $cols = $pdo->query("PRAGMA table_info(users)")->fetchAll(PDO::FETCH_ASSOC);
+        $cols = $pdo->query("PRAGMA table_info(personas)")->fetchAll(PDO::FETCH_ASSOC);
         $colNames = array_column($cols, 'name');
         if (!in_array('cedula', $colNames)) {
-            $pdo->exec("ALTER TABLE users ADD COLUMN cedula TEXT;");
+            $pdo->exec("ALTER TABLE personas ADD COLUMN cedula TEXT;");
         }
         if (!in_array('fecha_nacimiento', $colNames)) {
-            $pdo->exec("ALTER TABLE users ADD COLUMN fecha_nacimiento TEXT;");
+            $pdo->exec("ALTER TABLE personas ADD COLUMN fecha_nacimiento TEXT;");
         }
 
         // Insertar datos de ejemplo si está vacía
-        $row = $pdo->query('SELECT COUNT(*) as c FROM users')->fetch();
+        $row = $pdo->query('SELECT COUNT(*) as c FROM personas')->fetch();
         if (!$row || $row['c'] == 0) {
-            $st = $pdo->prepare('INSERT INTO users (nombre, email, telefono, cedula, fecha_nacimiento) VALUES (?, ?, ?, ?, ?)');
-            $st->execute(['Juan Pérez', 'juan@example.com', '555-1234', 'A1234567', '1985-04-12']);
-            $st->execute(['María López', 'maria@example.com', '555-5678', 'B9876543', '1990-09-30']);
+            $st = $pdo->prepare('INSERT INTO personas (nombre, cedula, fecha_nacimiento) VALUES (?, ?, ?)');
+            $st->execute(['Juan Pérez', 'V-12736128731', '1985-04-12']);
+            $st->execute(['María López', 'V-20987654321', '1990-09-30']);
         }
     } catch (PDOException $e) {
         http_response_code(500);

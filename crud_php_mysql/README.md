@@ -2,20 +2,19 @@ CRUD en PHP + MySQL
 
 Instrucciones rápidas:
 
-1) MySQL (opcional)
+1) MySQL (recomendado)
 
-   - Si prefieres MySQL, ejecuta `mysql -u root -p < schema.sql` para crear la base de datos y la tabla.
+   - Ejecuta `mysql -u root -p < schema.sql` para crear la base de datos `examen` y la tabla `personas`.
    - Ajusta el usuario/contraseña según tu entorno o usa variables de entorno descritas abajo.
 
-2) SQLite (recomendado para pruebas rápidas)
+2) SQLite (opcional para pruebas)
 
-   - El proyecto puede usar SQLite por defecto y creará `database.sqlite` dentro de la carpeta `crud_php_mysql` automáticamente.
-   - No necesitas ejecutar `schema.sql` para usar SQLite; la tabla `users` se crea y se insertan datos de ejemplo al primer acceso.
+   - El proyecto incluye soporte para SQLite en `db.php`, que creará `database.sqlite` dentro de la carpeta `crud_php_mysql` automáticamente si se usa.
+   - Si usas SQLite, la tabla por defecto creada será `personas` y se insertan datos de ejemplo al primer acceso.
 
 3) Seleccionar driver
 
-   - Para seleccionar MySQL exporta la variable de entorno `DB_DRIVER=mysql` antes de arrancar el servidor.
-   - Para usar SQLite (por defecto) no hace falta cambiar nada.
+   - El proyecto está configurado para usar MySQL por defecto. Ajusta `db_mysql.php` o las variables de entorno si hace falta.
 
 4) Variables de entorno para MySQL
 

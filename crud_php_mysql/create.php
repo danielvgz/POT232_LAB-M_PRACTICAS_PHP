@@ -20,7 +20,7 @@
     </div>
     <div class="mb-3">
       <label class="form-label">Cédula</label>
-      <input id="cedula" type="text" name="cedula" class="form-control" required maxlength="10" inputmode="latin">
+      <input id="cedula" type="text" name="cedula" class="form-control" required maxlength="13" inputmode="latin">
       <div class="invalid-feedback" id="error-cedula"></div>
     </div>
     <div class="mb-3">

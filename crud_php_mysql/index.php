@@ -7,7 +7,7 @@ if (isset($_GET['msg'])) {
     $msg = htmlspecialchars($_GET['msg']);
 }
 
-$st = $pdo->query('SELECT * FROM users ORDER BY id DESC');
+$st = $pdo->query('SELECT * FROM personas ORDER BY id DESC');
 $users = $st->fetchAll();
 ?>
 <!doctype html>

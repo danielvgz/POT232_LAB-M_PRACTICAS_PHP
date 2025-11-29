@@ -2,7 +2,7 @@
 require_once 'db_connect.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-$st = $pdo->prepare('SELECT * FROM users WHERE id = ?');
+$st = $pdo->prepare('SELECT * FROM personas WHERE id = ?');
 $st->execute([$id]);
 $user = $st->fetch();
 if (!$user) {

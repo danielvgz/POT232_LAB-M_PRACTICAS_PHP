@@ -7,7 +7,7 @@ if ($id <= 0) {
     exit;
 }
 
-$st = $pdo->prepare('DELETE FROM users WHERE id = ?');
+$st = $pdo->prepare('DELETE FROM personas WHERE id = ?');
 $st->execute([$id]);
 
 header('Location: index.php?msg=' . urlencode('Usuario eliminado'));

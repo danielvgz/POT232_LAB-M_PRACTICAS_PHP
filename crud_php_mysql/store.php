@@ -22,7 +22,7 @@ if (!preg_match('/^[A-Za-zÀ-ÿ\s]+$/u', $nombre)) {
     header('Location: create.php?msg=' . urlencode('Nombre: solo letras y espacios'));
     exit;
 }
-if ($cedula === '' || strlen($cedula) > 10) {
+if ($cedula === '' || strlen($cedula) > 13) {
     header('Location: create.php?msg=' . urlencode('Cédula inválida'));
     exit;
 }
@@ -45,7 +45,7 @@ if ($edad < 0 || $edad > 99) {
     exit;
 }
 
-$st = $pdo->prepare('INSERT INTO users (nombre, cedula, fecha_nacimiento, edad) VALUES (?, ?, ?, ?)');
+$st = $pdo->prepare('INSERT INTO personas (nombre, cedula, fecha_nacimiento, edad) VALUES (?, ?, ?, ?)');
 $st->execute([$nombre, $cedula, $fecha_nacimiento, $edad]);
 
 header('Location: index.php?msg=' . urlencode('Usuario creado correctamente'));

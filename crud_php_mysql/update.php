@@ -25,7 +25,7 @@ if (!preg_match('/^[A-Za-zÀ-ÿ\s]+$/u', $nombre)) {
     header('Location: edit.php?id=' . $id . '&msg=' . urlencode('Nombre: solo letras y espacios'));
     exit;
 }
-if ($cedula === '' || strlen($cedula) > 10) {
+if ($cedula === '' || strlen($cedula) > 13) {
     header('Location: edit.php?id=' . $id . '&msg=' . urlencode('Cédula inválida'));
     exit;
 }
@@ -43,7 +43,7 @@ if ($edad < 0 || $edad > 99) {
     exit;
 }
 
-$st = $pdo->prepare('UPDATE users SET nombre = ?, cedula = ?, fecha_nacimiento = ?, edad = ? WHERE id = ?');
+$st = $pdo->prepare('UPDATE personas SET nombre = ?, cedula = ?, fecha_nacimiento = ?, edad = ? WHERE id = ?');
 $st->execute([$nombre, $cedula, $fecha_nacimiento, $edad, $id]);
 
 header('Location: index.php?msg=' . urlencode('Usuario actualizado correctamente'));
