@@ -1,13 +1,7 @@
 <?php
-// db_connect.php - Selecciona driver por variable de entorno DB_DRIVER
-// Valores: 'sqlite' (por defecto) o 'mysql'
+// db_connect.php - Forzar uso de MySQL como único driver.
+// Lee variables de entorno para conexión en `db_mysql.php`.
 
-$driver = getenv('DB_DRIVER') ?: 'sqlite';
+require_once __DIR__ . '/db_mysql.php';
 
-if (strtolower($driver) === 'mysql') {
-    require_once __DIR__ . '/db_mysql.php';
-} else {
-    require_once __DIR__ . '/db.php';
-}
-
-// Al incluir uno de los archivos anteriores, queda disponible la variable $pdo
+// Al incluir `db_mysql.php` queda disponible la variable $pdo

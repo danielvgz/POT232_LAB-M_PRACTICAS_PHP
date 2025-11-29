@@ -34,10 +34,9 @@ $users = $st->fetchAll();
       <tr>
         <th>#</th>
         <th>Nombre</th>
-        <th>Email</th>
         <th>Cédula</th>
         <th>Fecha Nac.</th>
-        <th>Teléfono</th>
+        <th>Edad</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -46,10 +45,9 @@ $users = $st->fetchAll();
       <tr>
         <td><?php echo $u['id']; ?></td>
         <td><?php echo htmlspecialchars($u['nombre']); ?></td>
-        <td><?php echo htmlspecialchars($u['email']); ?></td>
         <td><?php echo htmlspecialchars($u['cedula'] ?? ''); ?></td>
         <td><?php echo htmlspecialchars($u['fecha_nacimiento'] ?? ''); ?></td>
-        <td><?php echo htmlspecialchars($u['telefono']); ?></td>
+        <td><?php echo htmlspecialchars($u['edad'] ?? ''); ?></td>
         <td>
           <a href="view.php?id=<?php echo $u['id']; ?>" class="btn btn-sm btn-outline-secondary">Ver</a>
           <a href="edit.php?id=<?php echo $u['id']; ?>" class="btn btn-sm btn-warning">Editar</a>
@@ -57,7 +55,7 @@ $users = $st->fetchAll();
         </td>
       </tr>
     <?php endforeach; else: ?>
-      <tr><td colspan="7">No hay usuarios.</td></tr>
+      <tr><td colspan="6">No hay usuarios.</td></tr>
     <?php endif; ?>
     </tbody>
   </table>

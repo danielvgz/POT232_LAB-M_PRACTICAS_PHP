@@ -24,10 +24,10 @@ if (!$user) {
   <dl class="row">
     <dt class="col-sm-3">ID</dt><dd class="col-sm-9"><?php echo $user['id']; ?></dd>
     <dt class="col-sm-3">Nombre</dt><dd class="col-sm-9"><?php echo htmlspecialchars($user['nombre']); ?></dd>
-    <dt class="col-sm-3">Email</dt><dd class="col-sm-9"><?php echo htmlspecialchars($user['email']); ?></dd>
     <dt class="col-sm-3">Cédula</dt><dd class="col-sm-9"><?php echo htmlspecialchars($user['cedula'] ?? ''); ?></dd>
     <dt class="col-sm-3">Fecha de nacimiento</dt><dd class="col-sm-9"><?php echo htmlspecialchars($user['fecha_nacimiento'] ?? ''); ?></dd>
-    <dt class="col-sm-3">Teléfono</dt><dd class="col-sm-9"><?php echo htmlspecialchars($user['telefono']); ?></dd>
+    <dt class="col-sm-3">Edad</dt><dd class="col-sm-9"><?php echo htmlspecialchars($user['edad'] ?? ''); ?></dd>
+    
   </dl>
   <a href="index.php" class="btn btn-secondary">Volver</a>
   <a href="edit.php?id=<?php echo $user['id']; ?>" class="btn btn-warning">Editar</a>
