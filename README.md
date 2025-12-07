@@ -134,7 +134,8 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 - **Semana actual:**  “¡Vacaciones de Navidad! Las clases se reanudan el 13 de enero de 2026. ¡Felices fiestas!” entre la semana 12 y la 13.
 
 - **Frases Del día:**
-
+"La Navidad no es un momento ni una estación, sino un estado de la mente." 
+> *Calvin Coolidge*
 
 
 
