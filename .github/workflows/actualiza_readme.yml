@@ -20,6 +20,10 @@ jobs:
       - name: Install requirements (opcional)
         run: |
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      
+      - name: Instala dependencias de Python
+        run: pip install requests beautifulsoup4
+
 
       - name: Ejecuta actualiza_readme.py
         run: python actualiza_readme.py
