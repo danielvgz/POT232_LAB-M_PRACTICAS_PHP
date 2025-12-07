@@ -3,7 +3,7 @@
 Bienvenido al repositorio de prácticas del laboratorio de **PHP** para la Sección 336.  
 Aquí encontrarás los ejercicios, recursos y actividades desarrolladas durante las 16 semanas del curso.
 <!-- ESTADO-ACTUAL-INI -->
-**Fecha de hoy:** 
+**Fecha de hoy:** 07/12/2025
 <!-- ESTADO-ACTUAL-FIN -->
 
 <!-- ESTADO-SEMANA-PASADA-INI -->
@@ -131,22 +131,10 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 
 ## Progreso actual
 
-- **Semana actual:** 3
-- **Hoy:** Jueves, semana de operadores y estructuras de control
-- El repositorio se irá actualizando semanalmente con nuevas prácticas y recursos.
+- **Semana actual:** Vacaciones
 
----
 
-## Prácticas y archivos
 
-Cada semana se agregan carpetas y archivos con ejemplos de código, ejercicios y soluciones.  
-Consulta el árbol de archivos del repositorio para ver las prácticas correspondientes a cada semana y módulo.
-
----
-
-## Calendario de evaluaciones
-
-> Próximamente: se agregará el cronograma detallado según el archivo de cronograma oficial.
 
 ---
 
