@@ -61,7 +61,6 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 | 3      | 1.6   | 2025-10-03  | Estructuras if/else, switch.                                    |
 | 3      | 1.7   | 2025-10-03  | Bucles for, while, do/while, foreach. break y continue.         |
 
-
 ## Módulo 2: PHP Intermedio y Bases de Datos
 
 ### Unidad: Bases de Datos y PDO
@@ -97,7 +96,6 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 | 10     | 3.3   | 2025-11-18  | Endpoints PUT y DELETE. Autenticación/Autorización básica.      |
 | 11     | 3.4   | 2025-11-18  | CORS y seguridad en APIs.                                       |
 
-
 ## Módulo 4: Introducción a Vue.js
 
 ### Unidad: Fundamentos y Reactividad
@@ -110,24 +108,24 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 ### Unidad: Comunicación con Backend y CRUD Frontend
 | Semana | Clase | Fecha       | Contenido                                                       |
 |--------|-------|-------------|-----------------------------------------------------------------|
-| 13     | 5.1   | 2025-12-09  | Vue CLI, Single File Components. Fetch API, Axios.              |
-| 13     | 5.2   | 2025-12-09  | Peticiones GET/POST/PUT/DELETE a la API PHP.                    |
-| 14     | 5.3   | 2025-12-09  | Manejo de estado reactivo, mensajes de éxito/error, Vue Router. |
-| 14     | 5.4   | 2025-12-09  | Ciclo de vida de componentes, CSS scoped, estilos dinámicos.    |
+| 13     | 5.1   | 2026-01-13  | Vue CLI, Single File Components. Fetch API, Axios.              |
+| 13     | 5.2   | 2026-01-13  | Peticiones GET/POST/PUT/DELETE a la API PHP.                    |
+| 14     | 5.3   | 2026-01-20  | Manejo de estado reactivo, mensajes de éxito/error, Vue Router. |
+| 14     | 5.4   | 2026-01-20  | Ciclo de vida de componentes, CSS scoped, estilos dinámicos.    |
 
 ## Módulo 5: Buenas Prácticas, Despliegue y Proyecto Final
 
 ### Unidad: Seguridad, Estado Global y Despliegue
 | Semana | Clase | Fecha       | Contenido                                                       |
 |--------|-------|-------------|-----------------------------------------------------------------|
-| 15     | 6.1   | 2025-12-23  | Estructura de proyecto PHP+Vue, seguridad (XSS, CSRF).          |
-| 15     | 6.2   | 2025-12-23  | Estado global avanzado con Pinia/Vuex.                          |
-| 16     | 6.3   | 2025-12-23  | Despliegue de aplicaciones, autenticación completa.             |
+| 15     | 6.1   | 2026-01-27  | Estructura de proyecto PHP+Vue, seguridad (XSS, CSRF).          |
+| 15     | 6.2   | 2026-01-27  | Estado global avanzado con Pinia/Vuex.                          |
+| 16     | 6.3   | 2026-02-03  | Despliegue de aplicaciones, autenticación completa.             |
 
 ### Unidad: Proyecto Final y Revisión General
 | Semana | Clase | Fecha       | Contenido                                                       |
 |--------|-------|-------------|-----------------------------------------------------------------|
-| 16     | 6.4   | 2026-01-02  | Revisión general y presentación de proyectos finales.           |
+| 16     | 6.4   | 2026-02-10  | Revisión general y presentación de proyectos finales.           |
 
 ---
 
