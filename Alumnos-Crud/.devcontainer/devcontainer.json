@@ -1,0 +1,17 @@
+{
+    "name": "PHP & MySQL",
+    "image": "mcr.microsoft.com/devcontainers/php:0-8.2",
+    "features": {
+        "ghcr.io/devcontainers/features/mysql:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y php-mysql pdo_mysql",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bmewburn.vscode-intelephense-client",
+                "cweijan.vscode-mysql-client2"
+            ]
+        }
+    }
+}
