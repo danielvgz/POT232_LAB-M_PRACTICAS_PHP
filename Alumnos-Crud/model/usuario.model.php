@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../config/database.php';
 class UsuarioModel
 {
     private $pdo;
@@ -6,13 +7,7 @@ class UsuarioModel
     public function __CONSTRUCT()
     {
         try {
-            $host = getenv('DB_HOST') ?: 'daniel-virguez.com';
-            $db   = getenv('DB_NAME') ?: 'db_uptp';
-            $user = getenv('DB_USER') ?: 'root';
-            $pass = getenv('DB_PASS') ?: 'toor';
-            $charset = getenv('DB_CHARSET') ?: 'utf8mb4';
-            $this->pdo = new PDO("mysql:host=$host;dbname=$db;charset=$charset", $user, $pass);
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->pdo = Database::connect();
         } catch(Exception $e) {
             die($e->getMessage());
         }
