@@ -1,6 +1,5 @@
-<?php include '../includes/navbar.php'; ?>
 <h2>Lista de Docentes</h2>
-<a href="docentes.controller.php?action=nuevo">Agregar Docente</a>
+<a href="docente.controller.php?action=Crud">Agregar Docente</a>
 <table border="1">
     <thead>
         <tr>
@@ -16,8 +15,8 @@
             <td><?= $d->email ?></td>
             <td><?= $d->especialidad ?></td>
             <td>
-                <a href="docentes.controller.php?action=editar&id=<?= $d->id ?>">Editar</a>
-                <a href="docentes.controller.php?action=eliminar&id=<?= $d->id ?>" onclick="return confirm('¿Seguro de eliminar?')">Eliminar</a>
+                <a href="docente.controller.php?action=Crud&id=<?= $d->id ?>">Editar</a>
+                <a href="docente.controller.php?action=Eliminar&id=<?= $d->id ?>" onclick="return confirm('¿Seguro de eliminar?')">Eliminar</a>
             </td>
         </tr>
         <?php endforeach; ?>
