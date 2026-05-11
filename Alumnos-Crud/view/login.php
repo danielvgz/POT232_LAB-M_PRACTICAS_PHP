@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Iniciar sesión</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-</head>
-<body>
+<?php include 'header.php'; ?>
 <div class="container" style="max-width:400px; margin-top:70px;">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -18,16 +11,20 @@
             <form method="POST">
                 <div class="form-group">
                     <label for="correo">Correo</label>
-                    <input type="email" name="correo" class="form-control" required autofocus>
+                    <input type="email" name="correo" class="form-control" required autofocus
+                        placeholder="ejemplo@correo.com"
+                        oninvalid="this.setCustomValidity('Por favor ingrese un correo válido')"
+                        oninput="setCustomValidity('')">
                 </div>
                 <div class="form-group">
                     <label for="password">Contraseña</label>
-                    <input type="password" name="password" class="form-control" required>
+                    <input type="password" name="password" class="form-control" required
+                        oninvalid="this.setCustomValidity('Por favor ingrese la contraseña')"
+                        oninput="setCustomValidity('')">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Entrar</button>
             </form>
         </div>
     </div>
 </div>
-</body>
-</html>
+</div></div></body></html>
