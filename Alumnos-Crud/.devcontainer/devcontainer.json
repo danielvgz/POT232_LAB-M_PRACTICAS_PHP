@@ -5,8 +5,7 @@
         "ghcr.io/devcontainers/features/mysql:1": {},
         "ghcr.io/devcontainers/features/github-cli:1": {}
     },
-    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y php-mysql pdo_mysql",
-    "customizations": {
+  "postCreateCommand": "php -m | grep pdo_mysql || (apt-get update && apt-get install -y php-mysql)"    "customizations": {
         "vscode": {
             "extensions": [
                 "bmewburn.vscode-intelephense-client",

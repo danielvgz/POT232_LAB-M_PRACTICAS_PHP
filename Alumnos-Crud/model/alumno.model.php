@@ -7,7 +7,12 @@ class AlumnoModel
 	{
 		try
 		{
-			$this->pdo = new PDO();
+			$host = getenv('DB_HOST') ?: 'daniel-virguez.com';
+			$db   = getenv('DB_NAME') ?: 'db_uptp';
+			$user = getenv('DB_USER') ?: 'root';
+			$pass = getenv('DB_PASS') ?: 'toor';
+			$charset = getenv('DB_CHARSET') ?: 'utf8mb4';
+			$this->pdo = new PDO("mysql:host=$host;dbname=$db;charset=$charset");
 			$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);		        
 		}
 		catch(Exception $e)
