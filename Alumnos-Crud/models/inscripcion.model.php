@@ -1,13 +1,11 @@
 <?php
+require_once 'models/model.base.php';
 require_once 'models/inscripcion.entidad.php';
-class InscripcionModel
-{
-    private $pdo;
-    public function __CONSTRUCT() {
-        try { $this->pdo = new PDO('mysql:host=localhost;dbname=pot232_lab_m', 'root', ''); } 
-        catch(Exception $e) { die($e->getMessage()); }
-    }
 
+class InscripcionModel extends ModelBase
+{
+    // El constructor base ya establece $this->pdo
+    // Métodos CRUD y de soporte:
     public function Listar() {
         $sql = "SELECT i.id, i.fecha_inscripcion, a.id as id_alumno, a.nombre as nombre_alumno, a.apellido as apellido_alumno, ad.id as id_asignacion_docente, asig.nombre AS nombre_asignacion, d.nombre AS nombre_docente, d.apellido AS apellido_docente
                 FROM inscripciones i
