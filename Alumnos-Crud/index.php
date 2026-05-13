@@ -20,7 +20,7 @@ if ($action === 'logout') {
 require_once 'auth.php';
 
 // FrontController original:
-require_once 'controller/alumno.controller.php';
+require_once 'controllers/alumno.controller.php';
 // Ruta del proyecto, cámbiala por la ruta que vas a usar
 
 // Esta lógica hará el papel de FrontController
