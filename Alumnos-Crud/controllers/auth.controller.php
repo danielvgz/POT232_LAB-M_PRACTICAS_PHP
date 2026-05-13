@@ -27,7 +27,7 @@ class AuthController {
                 $error = 'Correo o contraseña incorrectos.';
             }
         }
-        include __DIR__ . '/../view/login.php';
+        include __DIR__ . '/../views/login.php';
     }
     public function logout() {
         session_destroy();
