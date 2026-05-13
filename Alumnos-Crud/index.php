@@ -1,6 +1,6 @@
 <?php
 // Controlador de login/logout
-require_once 'controller/auth.controller.php';
+require_once 'controllers/auth.controller.php';
 
 $action = $_GET['action'] ?? '';
 
