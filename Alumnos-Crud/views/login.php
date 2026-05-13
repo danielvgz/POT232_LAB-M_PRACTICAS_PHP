@@ -9,21 +9,30 @@ $error)): ?>
                 <div class="alert alert-danger"><?= htmlspecialchars(
 $error) ?></div>
             <?php endif; ?>
-            <!-- Bloque de accesos de prueba -->
+            <!-- Bloque de accesos de prueba actualizado -->
             <div class="alert alert-info" style="margin-bottom:18px;">
-              <strong>Prueba con estos accesos:</strong>
+              <strong>Prueba con estos accesos (recuerda: debes iniciar sesión usando el correo):</strong>
               <ul style="margin-bottom: 0;">
                 <li>
-                  <b>Docente:</b> Usuario: <code>jperez</code> — Contraseña: <code>docente123</code>
+                  <b>Docente:</b><br>
+                  Usuario: <code>jperez</code><br>
+                  Correo: <code>jperez@ejemplo.com</code><br>
+                  Contraseña: <code>docente123</code>
                 </li>
                 <li>
-                  <b>Administrador:</b> Usuario: <code>admin</code> — Contraseña: <code>admin123</code>
+                  <b>Administrador:</b><br>
+                  Usuario: <code>admin</code><br>
+                  Correo: <code>admin@ejemplo.com</code><br>
+                  Contraseña: <code>admin123</code>
                 </li>
                 <li>
-                  <b>Alumno:</b> Usuario: <code>eduardo</code> — Contraseña: <code>contraseñaSegura123</code>
+                  <b>Alumno:</b><br>
+                  Usuario: <code>eduardo</code><br>
+                  Correo: <code>eduardo@ejemplo.com</code><br>
+                  Contraseña: <code>contraseñaSegura123</code>
                 </li>
               </ul>
-              <span style="font-size:0.9em; color:#555;">Elige el rol y accede con los datos correspondientes.</span>
+              <span style="font-size:0.9em; color:#555;">El acceso se realiza con el correo y contraseña.</span>
             </div>
 
             <form method="POST">
