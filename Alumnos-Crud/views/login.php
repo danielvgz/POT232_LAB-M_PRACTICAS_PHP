@@ -1,4 +1,4 @@
-<div class="container" style="max-width:400px; margin-top:70px;">
+<div style="max-width:400px; margin-top:70px; margin:0 auto;">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Iniciar sesión</h3>

@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../model/usuario.model.php';
-require_once __DIR__ . '/../model/usuario.entidad.php';
+require_once __DIR__ . '/../models/usuario.model.php';
+require_once __DIR__ . '/../models/usuario.entidad.php';
 session_start();
 
 class AuthController {
@@ -27,7 +27,9 @@ class AuthController {
                 $error = 'Correo o contraseña incorrectos.';
             }
         }
+	require_once 'views/header.php';
         include __DIR__ . '/../views/login.php';
+	require_once 'views/footer.php';
     }
     public function logout() {
         session_destroy();

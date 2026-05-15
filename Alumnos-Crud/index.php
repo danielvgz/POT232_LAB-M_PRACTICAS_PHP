@@ -1,9 +1,13 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+// ... rest of your code ...
 // Controlador de login/logout
 require_once 'controllers/auth.controller.php';
 
 $action = $_GET['action'] ?? '';
-
+define( 'RUTA_HTTP', 'https://' . $_SERVER['HTTP_HOST'] . '/Alumnos-Crud/' );
 // Si la acción es login o logout, gestiona el acceso sin requerir autenticación del usuario
 if ($action === 'login') {
     $auth = new AuthController();

@@ -1,7 +1,7 @@
 <?php
 class Database {
     public static function connect() {
-        $host = 'daniel-virguez.com';
+        $host = 'localhost';
         $db   = 'db_uptp';
         $user = 'root';
         $pass = 'toor';

@@ -1,6 +1,6 @@
 <?php
-require_once 'model/alumno.entidad.php';
-require_once 'model/alumno.model.php';
+require_once 'models/alumno.entidad.php';
+require_once 'models/alumno.model.php';
 
 class AlumnoController{
     
@@ -11,9 +11,9 @@ class AlumnoController{
     }
     
     public function Index(){
-        require_once 'view/header.php';
-        require_once 'view/alumno/alumno.php';
-        require_once 'view/footer.php';
+        require_once 'views/header.php';
+        require_once 'views/alumno/alumno.php';
+        require_once 'views/footer.php';
     }
     
     public function Crud(){
@@ -23,9 +23,9 @@ class AlumnoController{
             $alm = $this->model->Obtener($_REQUEST['id']);
         }
         
-        require_once 'view/header.php';
-        require_once 'view/alumno/alumno-editar.php';
-        require_once 'view/footer.php';
+        require_once 'views/header.php';
+        require_once 'views/alumno/alumno-editar.php';
+        require_once 'views/footer.php';
     }
     
     public function Guardar(){
