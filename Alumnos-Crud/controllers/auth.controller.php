@@ -9,24 +9,25 @@ class AuthController {
         $this->usuarioModel = new UsuarioModel();
     }
     public function login() {
-        $error = '';
-        if (isset($_SESSION['usuario_correo'])) {
-            header('Location: index.php');
+    $error = '';
+    if (isset($_SESSION['usuario_username'])) {
+        header('Location: index.php?c=Alumno');
+        exit;
+    }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $usuario = $_POST['usuario'] ?? '';
+        $password = $_POST['password'] ?? '';
+        $user = $this->usuarioModel->Login($usuario, $password);
+        if ($user) {
+            $_SESSION['usuario_id'] = $user->__GET('id');
+            $_SESSION['usuario_username'] = $user->__GET('username');
+            header('Location: index.php?c=Alumno');
             exit;
+        } else {
+            $error = 'Usuario o contraseña incorrectos.';
         }
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $correo = $_POST['correo'] ?? '';
-            $password = $_POST['password'] ?? '';
-            $user = $this->usuarioModel->Login($correo, $password);
-            if ($user) {
-                $_SESSION['usuario_id'] = $user->__GET('id');
-                $_SESSION['usuario_correo'] = $user->__GET('correo');
-                header('Location: index.php');
-                exit;
-            } else {
-                $error = 'Correo o contraseña incorrectos.';
-            }
-        }
+    }
+   
 	require_once 'views/header.php';
         include __DIR__ . '/../views/login.php';
 	require_once 'views/footer.php';
