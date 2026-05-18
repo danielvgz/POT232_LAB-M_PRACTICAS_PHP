@@ -23,7 +23,7 @@ return [
     ],
     'upload' => [
         'alumnos_dir' => ROOT_PATH . '/public/uploads/alumnos',
-        'alumnos_url' => 'public/uploads/alumnos',
+        'alumnos_url' => 'uploads/alumnos',
         'max_size' => 2 * 1024 * 1024,
         'allowed_mime' => [
             'image/jpeg' => 'jpg',

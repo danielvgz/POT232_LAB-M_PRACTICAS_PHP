@@ -10,7 +10,7 @@
             <td><?= (int)$r['id'] ?></td>
             <td><?= htmlspecialchars((string)$r['nombre'] . ' ' . $r['apellido']) ?></td>
             <td><?= htmlspecialchars((string)$r['correo']) ?></td>
-            <td><?php if (!empty($r['foto'])): ?><img src="<?= BASE_URL ?>/public/uploads/alumnos/<?= rawurlencode((string)$r['foto']) ?>" style="max-width:50px;max-height:50px"><?php endif; ?></td>
+            <td><?php if (!empty($r['foto'])): ?><img src="<?= BASE_URL ?>/uploads/alumnos/<?= rawurlencode((string)$r['foto']) ?>" style="max-width:50px;max-height:50px"><?php endif; ?></td>
             <td>
                 <a class="btn btn-xs btn-info" href="<?= BASE_URL ?>/index.php?c=Alumnos&a=edit&id=<?= (int)$r['id'] ?>">Editar</a>
                 <a class="btn btn-xs btn-danger" href="<?= BASE_URL ?>/index.php?c=Alumnos&a=delete&id=<?= (int)$r['id'] ?>" onclick="return confirm('¿Eliminar?');">Eliminar</a>

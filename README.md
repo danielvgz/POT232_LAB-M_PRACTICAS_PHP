@@ -154,15 +154,16 @@ Para ejecutar código PHP, utiliza Codespaces o tu servidor local.
 
 ## App MVC PHP 8.2 + MySQL (IIS 10)
 
-Se agregó una app MVC sin framework en la raíz del repositorio con esta estructura:
+Se agregó una app MVC sin framework bajo `MVC_PHP_MYSQL/` con esta estructura:
 
-- `index.php` (front controller con rutas tipo `index.php?c=Controller&a=action`)
-- `config/config.php` (credenciales y configuración de subida)
-- `app/core` (`Database.php`, `Router.php`, `Auth.php`)
-- `app/controllers`, `app/models`, `app/views`
-- `public/assets/bootstrap-3.3.17/` (Bootstrap local + jQuery local)
-- `public/uploads/alumnos/` (fotos de alumnos)
-- `database/schema.sql` (esquema completo relacional)
+- `MVC_PHP_MYSQL/index.php` (front controller)
+- `MVC_PHP_MYSQL/public/index.php` (front controller recomendado para IIS)
+- `MVC_PHP_MYSQL/config/config.php` (credenciales y configuración de subida)
+- `MVC_PHP_MYSQL/app/core` (`Database.php`, `Router.php`, `Auth.php`)
+- `MVC_PHP_MYSQL/app/controllers`, `MVC_PHP_MYSQL/app/models`, `MVC_PHP_MYSQL/app/views`
+- `MVC_PHP_MYSQL/public/assets/bootstrap-3.3.17/` (Bootstrap local + jQuery local)
+- `MVC_PHP_MYSQL/public/uploads/alumnos/` (fotos de alumnos)
+- `MVC_PHP_MYSQL/database/schema.sql` (esquema completo relacional)
 
 ### 1) Requisitos
 
@@ -172,18 +173,18 @@ Se agregó una app MVC sin framework en la raíz del repositorio con esta estruc
 
 ### 2) Configuración en IIS
 
-1. Crear un sitio/aplicación apuntando a la carpeta del repositorio.
+1. Crear un sitio/aplicación con **Physical Path** en `...\MVC_PHP_MYSQL\public\` (recomendado).
 2. Configurar `index.php` como documento predeterminado.
-3. Asegurar permisos de escritura para `public/uploads/alumnos/` (IIS_IUSRS).
+3. Asegurar permisos de escritura para `...\MVC_PHP_MYSQL\public\uploads\alumnos\` (IIS_IUSRS).
 
 ### 3) Base de datos
 
 1. Crear base de datos (ejemplo: `pot232_escuela`).
-2. Importar `database/schema.sql`.
+2. Importar `MVC_PHP_MYSQL/database/schema.sql`.
 
 ### 4) Configuración de credenciales
 
-Editar `config/config.php` o usar variables de entorno:
+Editar `MVC_PHP_MYSQL/config/config.php` o usar variables de entorno:
 
 - `DB_HOST`
 - `DB_PORT`
