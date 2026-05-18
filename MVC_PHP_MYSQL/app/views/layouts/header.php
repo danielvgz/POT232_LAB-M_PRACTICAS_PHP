@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>POT232 MVC</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/public/assets/bootstrap-3.3.17/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/bootstrap-3.3.17/css/bootstrap.min.css">
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-static-top">
