@@ -151,3 +151,58 @@ Este repositorio acompaña el desarrollo del curso de PHP y Vue.js, según el si
 **Nota:**  
 GitHub Pages solo muestra contenido estático (HTML, CSS, JS).  
 Para ejecutar código PHP, utiliza Codespaces o tu servidor local.
+
+## App MVC PHP 8.2 + MySQL (IIS 10)
+
+Se agregó una app MVC sin framework en la raíz del repositorio con esta estructura:
+
+- `index.php` (front controller con rutas tipo `index.php?c=Controller&a=action`)
+- `config/config.php` (credenciales y configuración de subida)
+- `app/core` (`Database.php`, `Router.php`, `Auth.php`)
+- `app/controllers`, `app/models`, `app/views`
+- `public/assets/bootstrap-3.3.17/` (Bootstrap local + jQuery local)
+- `public/uploads/alumnos/` (fotos de alumnos)
+- `database/schema.sql` (esquema completo relacional)
+
+### 1) Requisitos
+
+- IIS 10
+- PHP 8.2 (habilitar extensiones `pdo_mysql`, `fileinfo`, `session`)
+- MySQL 8+
+
+### 2) Configuración en IIS
+
+1. Crear un sitio/aplicación apuntando a la carpeta del repositorio.
+2. Configurar `index.php` como documento predeterminado.
+3. Asegurar permisos de escritura para `public/uploads/alumnos/` (IIS_IUSRS).
+
+### 3) Base de datos
+
+1. Crear base de datos (ejemplo: `pot232_escuela`).
+2. Importar `database/schema.sql`.
+
+### 4) Configuración de credenciales
+
+Editar `config/config.php` o usar variables de entorno:
+
+- `DB_HOST`
+- `DB_PORT`
+- `DB_NAME`
+- `DB_USER`
+- `DB_PASS`
+- `DB_CHARSET`
+
+### 5) Acceso por defecto (semillas)
+
+- Admin: `admin` / `admin123`
+- Docente: `jperez` / `docente123`
+- Alumno: `eduardo` / `contraseñaSegura123`
+
+### 6) Funcionalidades incluidas
+
+- Login por `username` o `correo` + `password_verify()`
+- Roles:
+  - `admin`: CRUD completo (`alumnos`, `docentes`, `usuarios`, `asignaciones`, `asignaciones_docente`, `inscripciones`)
+  - `docente`: ver sus asignaciones y alumnos inscritos
+  - `alumno`: ver oferta, auto-inscribirse, ver sus inscripciones
+- Subida de fotos de alumnos (`jpeg/png/webp`, límite 2MB, nombre seguro único)
