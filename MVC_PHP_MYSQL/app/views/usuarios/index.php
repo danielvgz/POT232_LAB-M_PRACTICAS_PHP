@@ -1,0 +1,10 @@
+<div class="clearfix"><h3 class="pull-left">Usuarios</h3><a class="btn btn-primary pull-right" href="<?= BASE_URL ?>/index.php?c=Usuarios&a=create">Nuevo</a></div><hr>
+<table class="table table-bordered table-striped"><thead><tr><th>ID</th><th>Usuario</th><th>Correo</th><th>Rol</th><th>Relación</th><th></th></tr></thead><tbody>
+<?php foreach ($rows as $r): ?>
+<tr>
+<td><?= (int)$r['id'] ?></td><td><?= htmlspecialchars((string)$r['username']) ?></td><td><?= htmlspecialchars((string)$r['correo']) ?></td><td><?= htmlspecialchars((string)$r['rol']) ?></td>
+<td><?php if ($r['alumno_id']): ?>Alumno: <?= htmlspecialchars((string)$r['alumno_nombre'].' '.$r['alumno_apellido']) ?><?php endif; ?><?php if ($r['docente_id']): ?> Docente: <?= htmlspecialchars((string)$r['docente_nombre'].' '.$r['docente_apellido']) ?><?php endif; ?></td>
+<td><a class="btn btn-xs btn-info" href="<?= BASE_URL ?>/index.php?c=Usuarios&a=edit&id=<?= (int)$r['id'] ?>">Editar</a> <a class="btn btn-xs btn-danger" onclick="return confirm('¿Eliminar?');" href="<?= BASE_URL ?>/index.php?c=Usuarios&a=delete&id=<?= (int)$r['id'] ?>">Eliminar</a></td>
+</tr>
+<?php endforeach; ?>
+<?php if (!$rows): ?><tr><td colspan="6">Sin registros.</td></tr><?php endif; ?></tbody></table>
