@@ -2,43 +2,36 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-// ... rest of your code ...
-// Controlador de login/logout
-require_once 'controllers/auth.controller.php';
-
-$action = $_GET['action'] ?? '';
-define( 'RUTA_HTTP', 'https://' . $_SERVER['HTTP_HOST'] . '/Alumnos-Crud/' );
-// Si la acción es login o logout, gestiona el acceso sin requerir autenticación del usuario
-if ($action === 'login') {
-    $auth = new AuthController();
-    $auth->login();
-    exit;
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
-if ($action === 'logout') {
-    $auth = new AuthController();
-    $auth->logout();
+
+define('RUTA_HTTP', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . '/Alumnos-Crud/');
+
+if (!isset($_SESSION['auth_user'])) {
+    header('Location: login.php');
     exit;
 }
 
-// Protege todo lo demás
-require_once 'auth.php';
-
-// FrontController original:
 require_once 'controllers/alumno.controller.php';
-// Ruta del proyecto, cámbiala por la ruta que vas a usar
+require_once 'controllers/DocenteController.php';
 
 // Esta lógica hará el papel de FrontController
 if(!isset($_REQUEST['c'])){
     $controller = new AlumnoController();
     $controller->Index();    
 } else {
-    // Obtenemos el controlador que queremos cargar
-    $controller = $_REQUEST['c'] . 'Controller';
+    $allowedControllers = array('Alumno', 'Docente');
+    $controllerName = in_array($_REQUEST['c'], $allowedControllers, true) ? $_REQUEST['c'] : 'Alumno';
+    $controller = $controllerName . 'Controller';
     $accion     = isset($_REQUEST['a']) ? $_REQUEST['a'] : 'Index';
 
     // Instanciamos el controlador
     $controller = new $controller();
 
     // Llama la acción
-    call_user_func( array( $controller, $accion ) );
+    if (!is_callable(array($controller, $accion))) {
+        $accion = 'Index';
+    }
+    call_user_func(array($controller, $accion));
 }
