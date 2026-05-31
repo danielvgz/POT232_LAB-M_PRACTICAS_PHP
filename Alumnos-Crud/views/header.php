@@ -30,6 +30,9 @@
                 <div class="row" style="margin-bottom:10px;">
                     <div class="col-xs-12">
                         <a class="btn btn-default btn-sm" href="index.php?c=Alumno">Alumnos</a>
+                        <?php if (($_SESSION['usuario_rol'] ?? '') === 'alumno'): ?>
+                            <a class="btn btn-default btn-sm" href="index.php?c=Inscripcion">Matrículas</a>
+                        <?php endif; ?>
                         <?php if (in_array(($_SESSION['usuario_rol'] ?? ''), ['alumno', 'profesor', 'docente'], true)): ?>
                             <a class="btn btn-info btn-sm" href="index.php?c=Calificacion">Calificaciones</a>
                         <?php endif; ?>

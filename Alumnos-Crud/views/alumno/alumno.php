@@ -3,11 +3,6 @@
 <div class="well well-sm text-right">
     <a class="btn btn-primary" href="?c=Alumno&a=Crud">Nuevo alumno</a>
 </div>
-<?php if (!empty($puedeExportar)): ?>
-<div class="well well-sm text-center">
-    <a href="?c=Alumno&a=excel">Exportar a Excel</a>
-</div>
-<?php endif; ?>
 
 <table class="table table-striped">
     <thead>
@@ -22,6 +17,15 @@
             <th style="width:80px;"></th>
         </tr>
     </thead>
+    <tbody>
+    <?php if (!empty($puedeExportar)): ?>
+        <tr>
+            <td>
+                <a href="?c=Alumno&a=excel">Exportar a Excel</a>
+            </td>
+            <td colspan="7"></td>
+        </tr>
+    <?php endif; ?>
 
     <?php foreach($this->model->Listar() as $r): ?>
         <tr>
@@ -43,6 +47,7 @@
             </td>
         </tr>
     <?php endforeach; ?>
+    </tbody>
 </table> 
 
 <?php if (!empty($esAdmin)): ?>

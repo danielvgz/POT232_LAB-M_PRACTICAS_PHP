@@ -67,11 +67,21 @@ class UsuarioModel extends ModelBase
 
     public function AsignarProfesor($idUsuario)
     {
+        $usuario = $this->obtenerUsuarioAlumno($idUsuario);
+        if (!$usuario) {
+            return false;
+        }
+
+        $docenteId = $this->resolverDocenteIdParaUsuario($usuario);
+        if (!$docenteId) {
+            return false;
+        }
+
         $sql = "UPDATE usuarios
-                SET rol = 'profesor'
+                SET rol = 'profesor', docente_id = ?
                 WHERE id = ? AND rol = 'alumno'";
         $stm = $this->pdo->prepare($sql);
-        $stm->execute([$idUsuario]);
+        $stm->execute([$docenteId, $idUsuario]);
         return $stm->rowCount() > 0;
     }
 
@@ -88,5 +98,53 @@ class UsuarioModel extends ModelBase
         $nuevoHash = password_hash($password, PASSWORD_DEFAULT);
         $this->pdo->prepare("UPDATE usuarios SET password_hash = ? WHERE id = ?")
             ->execute([$nuevoHash, $id]);
+    }
+
+    private function obtenerUsuarioAlumno($idUsuario)
+    {
+        $sql = "SELECT u.id,
+                       u.correo,
+                       u.docente_id,
+                       u.alumno_id,
+                       COALESCE(a.Nombre, a.nombre) AS nombre_alumno,
+                       COALESCE(a.Apellido, a.apellido) AS apellido_alumno
+                FROM usuarios u
+                LEFT JOIN alumnos a ON a.id = u.alumno_id
+                WHERE u.id = ? AND u.rol = 'alumno'
+                LIMIT 1";
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute([$idUsuario]);
+        return $stm->fetch(PDO::FETCH_OBJ);
+    }
+
+    private function resolverDocenteIdParaUsuario($usuario)
+    {
+        if (!empty($usuario->docente_id)) {
+            return (int)$usuario->docente_id;
+        }
+
+        $correo = (string)($usuario->correo ?? '');
+        if ($correo !== '') {
+            $stm = $this->pdo->prepare("SELECT id FROM docentes WHERE correo = ? LIMIT 1");
+            $stm->execute([$correo]);
+            $docente = $stm->fetch(PDO::FETCH_OBJ);
+            if ($docente) {
+                return (int)$docente->id;
+            }
+        }
+
+        $nombre = trim((string)($usuario->nombre_alumno ?? ''));
+        $apellido = trim((string)($usuario->apellido_alumno ?? ''));
+        if ($nombre === '') {
+            $nombre = 'Docente';
+        }
+        if ($apellido === '') {
+            $apellido = 'Asignado';
+        }
+
+        $sqlInsert = "INSERT INTO docentes (nombre, apellido, correo, especialidad)
+                      VALUES (?, ?, ?, ?)";
+        $this->pdo->prepare($sqlInsert)->execute([$nombre, $apellido, $correo, 'General']);
+        return (int)$this->pdo->lastInsertId();
     }
 }
