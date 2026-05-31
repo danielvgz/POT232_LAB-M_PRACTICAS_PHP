@@ -100,3 +100,15 @@ CREATE TABLE inscripciones (
     FOREIGN KEY (id_alumno) REFERENCES alumnos(id) ON DELETE CASCADE,
     FOREIGN KEY (id_asignacion_docente) REFERENCES asignaciones_docente(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ========== TABLA CALIFICACIONES ==========
+DROP TABLE IF EXISTS calificaciones;
+CREATE TABLE calificaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_inscripcion INT NOT NULL UNIQUE,
+    evaluacion1 DECIMAL(5,2) NULL,
+    evaluacion2 DECIMAL(5,2) NULL,
+    evaluacion3 DECIMAL(5,2) NULL,
+    evaluacion4 DECIMAL(5,2) NULL,
+    FOREIGN KEY (id_inscripcion) REFERENCES inscripciones(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

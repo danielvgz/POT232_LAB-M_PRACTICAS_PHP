@@ -27,6 +27,14 @@
                         <a href="index.php?action=logout">Cerrar sesión</a>
                     </div>
                 </div>
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-12">
+                        <a class="btn btn-default btn-sm" href="index.php?c=Alumno">Alumnos</a>
+                        <?php if (in_array(($_SESSION['usuario_rol'] ?? ''), ['alumno', 'profesor', 'docente'], true)): ?>
+                            <a class="btn btn-info btn-sm" href="index.php?c=Calificacion">Calificaciones</a>
+                        <?php endif; ?>
+                    </div>
+                </div>
             <?php endif; ?>
             <div class="row">
                 <div class="col-xs-12">

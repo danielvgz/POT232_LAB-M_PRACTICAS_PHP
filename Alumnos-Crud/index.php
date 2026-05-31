@@ -34,18 +34,25 @@ if ($action === 'asignar_profesor') {
 // Protege todo lo demás
 require_once 'auth.php';
 
-// FrontController original:
-require_once 'controllers/alumno.controller.php';
-// Ruta del proyecto, cámbiala por la ruta que vas a usar
-
 // Esta lógica hará el papel de FrontController
 if(!isset($_REQUEST['c'])){
+    require_once 'controllers/alumno.controller.php';
     $controller = new AlumnoController();
     $controller->Index();    
 } else {
     // Obtenemos el controlador que queremos cargar
-    $controller = $_REQUEST['c'] . 'Controller';
+    $controllerBase = preg_replace('/[^a-zA-Z0-9_]/', '', $_REQUEST['c']);
+    $controller = $controllerBase . 'Controller';
     $accion     = isset($_REQUEST['a']) ? $_REQUEST['a'] : 'Index';
+    $controllerFile = 'controllers/' . strtolower($controllerBase) . '.controller.php';
+
+    if (!is_file($controllerFile)) {
+        header('HTTP/1.1 404 Not Found');
+        echo 'Controlador no encontrado.';
+        exit;
+    }
+
+    require_once $controllerFile;
 
     // Instanciamos el controlador
     $controller = new $controller();
