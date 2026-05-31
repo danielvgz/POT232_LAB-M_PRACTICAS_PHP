@@ -23,6 +23,38 @@ class MatriculaModel extends BaseModel
         return $stmt->fetch();
     }
 
+    public function byAlumnoId($alumnoId)
+    {
+        $sql = 'SELECT m.id, m.fecha_matricula, a.nombre AS alumno_nombre, a.apellido AS alumno_apellido,
+                       d.nombre AS docente_nombre, d.apellido AS docente_apellido, mt.nombre AS materia_nombre,
+                       m.alumno_id, m.docente_id, m.materia_id
+                FROM matriculas m
+                INNER JOIN alumnos a ON a.id = m.alumno_id
+                INNER JOIN docentes d ON d.id = m.docente_id
+                INNER JOIN materias mt ON mt.id = m.materia_id
+                WHERE m.alumno_id = ?
+                ORDER BY m.id DESC';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(array((int) $alumnoId));
+        return $stmt->fetchAll();
+    }
+
+    public function byDocenteId($docenteId)
+    {
+        $sql = 'SELECT m.id, m.fecha_matricula, a.nombre AS alumno_nombre, a.apellido AS alumno_apellido,
+                       d.nombre AS docente_nombre, d.apellido AS docente_apellido, mt.nombre AS materia_nombre,
+                       m.alumno_id, m.docente_id, m.materia_id
+                FROM matriculas m
+                INNER JOIN alumnos a ON a.id = m.alumno_id
+                INNER JOIN docentes d ON d.id = m.docente_id
+                INNER JOIN materias mt ON mt.id = m.materia_id
+                WHERE m.docente_id = ?
+                ORDER BY m.id DESC';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(array((int) $docenteId));
+        return $stmt->fetchAll();
+    }
+
     public function save($data)
     {
         if (!empty($data['id'])) {

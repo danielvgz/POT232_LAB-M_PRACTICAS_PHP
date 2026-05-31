@@ -13,14 +13,14 @@ class DocentesController extends BaseCrudController
 
     public function index()
     {
-        $this->requireAuth();
+        $this->requireRole(array('maestro', 'profesor'));
         $rows = $this->model->all();
         $this->view('docentes/index', array('rows' => $rows));
     }
 
     public function form()
     {
-        $this->requireAuth();
+        $this->requireRole(array('maestro', 'profesor'));
         $row = array('id' => '', 'nombre' => '', 'apellido' => '', 'sexo' => '1', 'fecha_nacimiento' => '', 'fecha_registro' => date('Y-m-d'), 'foto' => '', 'correo' => '');
         if (!empty($_GET['id'])) {
             $found = $this->model->find((int) $_GET['id']);
@@ -33,7 +33,7 @@ class DocentesController extends BaseCrudController
 
     public function save()
     {
-        $this->requireAuth();
+        $this->requireRole(array('maestro', 'profesor'));
         $data = array(
             'id' => $this->clean('id'),
             'nombre' => $this->clean('nombre'),
@@ -51,7 +51,7 @@ class DocentesController extends BaseCrudController
 
     public function delete()
     {
-        $this->requireAuth();
+        $this->requireRole(array('maestro', 'profesor'));
         if (!empty($_GET['id'])) {
             $this->model->delete((int) $_GET['id']);
         }

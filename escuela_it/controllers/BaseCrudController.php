@@ -17,6 +17,28 @@ class BaseCrudController
         require BASE_PATH . '/views/layout/footer.php';
     }
 
+    protected function currentUser()
+    {
+        return isset($_SESSION['user']) ? $_SESSION['user'] : null;
+    }
+
+    protected function currentRole()
+    {
+        $user = $this->currentUser();
+        return isset($user['rol']) ? strtolower($user['rol']) : '';
+    }
+
+    protected function requireRole($roles)
+    {
+        $this->requireAuth();
+        $role = $this->currentRole();
+        $allowed = array_map('strtolower', (array) $roles);
+        if (!in_array($role, $allowed, true)) {
+            header('Location: index.php?controller=home&action=index');
+            exit;
+        }
+    }
+
     protected function clean($key, $default = '')
     {
         return isset($_POST[$key]) ? trim($_POST[$key]) : $default;

@@ -14,15 +14,8 @@
             </select>
         </div>
         <div class="col-sm-4 form-group">
-            <label>Docente</label>
-            <select class="form-control" name="docente_id" required>
-                <option value="">Seleccione...</option>
-                <?php foreach ($docentes as $d): ?>
-                    <option value="<?php echo (int) $d['id']; ?>" <?php echo ((string) $row['docente_id'] === (string) $d['id']) ? 'selected' : ''; ?>>
-                        <?php echo htmlspecialchars($d['nombre'] . ' ' . $d['apellido']); ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+            <label>Docente asignado</label>
+            <input class="form-control" type="text" value="Asignacion al docente autenticado" disabled>
         </div>
         <div class="col-sm-4 form-group">
             <label>Materia</label>
