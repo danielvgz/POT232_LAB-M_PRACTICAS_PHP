@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS docentes (
 CREATE TABLE IF NOT EXISTS asignaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
+    creditos INT NOT NULL DEFAULT 1,
     descripcion TEXT
 );
 

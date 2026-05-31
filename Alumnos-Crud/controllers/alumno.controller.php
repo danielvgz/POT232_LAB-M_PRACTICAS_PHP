@@ -1,16 +1,24 @@
 <?php
 require_once 'models/alumno.entidad.php';
 require_once 'models/alumno.model.php';
+require_once 'models/usuario.model.php';
 
 class AlumnoController{
     
     private $model;
+    private $usuarioModel;
     
     public function __CONSTRUCT(){
         $this->model = new AlumnoModel();
+        $this->usuarioModel = new UsuarioModel();
     }
     
     public function Index(){
+        $usuariosAlumno = $this->usuarioModel->ListarAlumnos();
+        $rolActual = $_SESSION['usuario_rol'] ?? '';
+        $esAdmin = $rolActual === 'admin';
+        $puedeExportar = in_array($rolActual, ['admin', 'docente', 'profesor'], true);
+
         require_once 'views/header.php';
         require_once 'views/alumno/alumno.php';
         require_once 'views/footer.php';
@@ -54,12 +62,18 @@ class AlumnoController{
     }
     
     public function Excel(){
+        $rolActual = $_SESSION['usuario_rol'] ?? '';
+        if (!in_array($rolActual, ['admin', 'docente', 'profesor'], true)) {
+            header('Location: index.php?c=Alumno&msg=sin_permiso_exportar');
+            exit;
+        }
+
         header("Content-type: application/vnd.ms-excel");
         header("Content-Disposition: attachment; filename=mi_archivo.xls");
         header("Pragma: no-cache");
         header("Expires: 0");    
         
-        require_once 'view/alumno/alumno-excel.php';
+        require_once 'views/alumno/alumno-excel.php';
     }
     
     public function Eliminar(){

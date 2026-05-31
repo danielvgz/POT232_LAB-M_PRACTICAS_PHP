@@ -8,15 +8,26 @@ require_once 'controllers/auth.controller.php';
 
 $action = $_GET['action'] ?? '';
 define( 'RUTA_HTTP', 'https://' . $_SERVER['HTTP_HOST'] . '/Alumnos-Crud/' );
-// Si la acción es login o logout, gestiona el acceso sin requerir autenticación del usuario
+// Si la acción es login/logout/registro, gestiona el acceso sin requerir autenticación del usuario
 if ($action === 'login') {
     $auth = new AuthController();
     $auth->login();
     exit;
 }
+if ($action === 'register') {
+    $auth = new AuthController();
+    $auth->register();
+    exit;
+}
 if ($action === 'logout') {
     $auth = new AuthController();
     $auth->logout();
+    exit;
+}
+if ($action === 'asignar_profesor') {
+    require_once 'auth.php';
+    $auth = new AuthController();
+    $auth->asignarProfesor();
     exit;
 }
 

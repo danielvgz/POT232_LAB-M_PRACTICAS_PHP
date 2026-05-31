@@ -16,5 +16,17 @@
     <body>
         
         <div class="container">
+            <?php if (!empty($_SESSION['usuario_username'])): ?>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-xs-12 text-right">
+                        <small>
+                            Usuario: <strong><?php echo htmlspecialchars($_SESSION['usuario_username']); ?></strong>
+                            (Rol: <?php echo htmlspecialchars(($_SESSION['usuario_rol'] ?? '') === 'docente' ? 'profesor' : ($_SESSION['usuario_rol'] ?? '')); ?>)
+                        </small>
+                        |
+                        <a href="index.php?action=logout">Cerrar sesión</a>
+                    </div>
+                </div>
+            <?php endif; ?>
             <div class="row">
                 <div class="col-xs-12">

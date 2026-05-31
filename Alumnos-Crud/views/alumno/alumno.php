@@ -3,6 +3,11 @@
 <div class="well well-sm text-right">
     <a class="btn btn-primary" href="?c=Alumno&a=Crud">Nuevo alumno</a>
 </div>
+<?php if (!empty($puedeExportar)): ?>
+<div class="well well-sm text-center">
+    <a href="?c=Alumno&a=excel">Exportar a Excel</a>
+</div>
+<?php endif; ?>
 
 <table class="table table-striped">
     <thead>
@@ -14,16 +19,10 @@
             <th style="width:120px;">Sexo</th>
             <th style="width:120px;">Nacimiento</th>
             <th style="width:60px;"></th>
-            <th style="width:60px;"></th>
+            <th style="width:80px;"></th>
         </tr>
     </thead>
-    
-    <tr>
-        <td colspan="8" class="text-center">
-            <a href="?c=Alumno&a=excel">Exportar a Excel</a>
-        </td>
-    </tr>
-    
+
     <?php foreach($this->model->Listar() as $r): ?>
         <tr>
             <td>
@@ -31,11 +30,11 @@
                     <img src="uploads/<?php echo $r->__GET('Foto'); ?>" style="width:100%;" />
                 <?php endif; ?> 
             </td>
-            <td><?php echo $r->__GET('Nombre'); ?></td>
-            <td><?php echo $r->__GET('Apellido'); ?></td>
-            <td><?php echo $r->__GET('Correo'); ?></td>
+            <td><?php echo htmlspecialchars($r->__GET('Nombre')); ?></td>
+            <td><?php echo htmlspecialchars($r->__GET('Apellido')); ?></td>
+            <td><?php echo htmlspecialchars($r->__GET('Correo')); ?></td>
             <td><?php echo $r->__GET('Sexo') == 1 ? 'Hombre' : 'Mujer'; ?></td>
-            <td><?php echo $r->__GET('FechaNacimiento'); ?></td>
+            <td><?php echo htmlspecialchars($r->__GET('FechaNacimiento')); ?></td>
             <td>
                 <a href="?c=Alumno&a=Crud&id=<?php echo $r->id; ?>">Editar</a>
             </td>
@@ -44,12 +43,35 @@
             </td>
         </tr>
     <?php endforeach; ?>
-    
-    <tfoot>
-        <tr>
-            <td colspan="8" class="text-center">
-                <a href="?c=Alumno&a=excel">Exportar a Excel</a>
-            </td>
-        </tr>
-    </tfoot>
 </table> 
+
+<?php if (!empty($esAdmin)): ?>
+    <h3>Asignar rol de profesor</h3>
+    <p class="text-muted">Solo el administrador puede convertir usuarios con rol alumno a profesor.</p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Correo</th>
+                <th>Rol actual</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($usuariosAlumno as $usuario): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($usuario->username); ?></td>
+                    <td><?php echo htmlspecialchars($usuario->correo); ?></td>
+                    <td><?php echo htmlspecialchars($usuario->rol); ?></td>
+                    <td>
+                        <a class="btn btn-xs btn-warning"
+                           href="index.php?action=asignar_profesor&id=<?php echo (int)$usuario->id; ?>"
+                           onclick="return confirm('¿Asignar rol profesor a este usuario?');">
+                            Asignar profesor
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>
