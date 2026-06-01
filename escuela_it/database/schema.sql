@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS matriculas;
+DROP TABLE IF EXISTS acciones;
 DROP TABLE IF EXISTS usuarios;
 DROP TABLE IF EXISTS materias;
 DROP TABLE IF EXISTS docentes;
@@ -40,18 +41,21 @@ INSERT INTO docentes (nombre, apellido, sexo, fecha_nacimiento, fecha_registro, 
 CREATE TABLE materias (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    descripcion VARCHAR(255) DEFAULT NULL
+    descripcion VARCHAR(255) DEFAULT NULL,
+    creditos INT NOT NULL DEFAULT 3,
+    docente_id INT DEFAULT NULL,
+    FOREIGN KEY (docente_id) REFERENCES docentes(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO materias (nombre, descripcion) VALUES
-('Matematicas', 'Algebra y aritmetica'),
-('Programacion PHP', 'Fundamentos de desarrollo web en PHP');
+INSERT INTO materias (nombre, descripcion, creditos, docente_id) VALUES
+('Matematicas', 'Algebra y aritmetica', 3, 1),
+('Programacion PHP', 'Fundamentos de desarrollo web en PHP', 4, 1);
 
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     correo VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    rol ENUM('alumno', 'maestro') NOT NULL,
+    rol ENUM('alumno', 'maestro', 'profesor', 'admin') NOT NULL,
     alumno_id INT DEFAULT NULL,
     docente_id INT DEFAULT NULL,
     FOREIGN KEY (alumno_id) REFERENCES alumnos(id) ON DELETE SET NULL,
@@ -60,7 +64,8 @@ CREATE TABLE usuarios (
 
 INSERT INTO usuarios (correo, password, rol, alumno_id, docente_id) VALUES
 ('hitogoroshi@outlook.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'alumno', 1, NULL),
-('juan.perez@escuela.it', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'maestro', NULL, 1);
+('juan.perez@escuela.it', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'maestro', NULL, 1),
+('admin@escuela.it', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', NULL, NULL);
 
 CREATE TABLE matriculas (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -68,6 +73,10 @@ CREATE TABLE matriculas (
     docente_id INT NOT NULL,
     materia_id INT NOT NULL,
     fecha_matricula DATE DEFAULT NULL,
+    obj1 DECIMAL(5,2) DEFAULT NULL,
+    obj2 DECIMAL(5,2) DEFAULT NULL,
+    obj3 DECIMAL(5,2) DEFAULT NULL,
+    obj4 DECIMAL(5,2) DEFAULT NULL,
     FOREIGN KEY (alumno_id) REFERENCES alumnos(id) ON DELETE CASCADE,
     FOREIGN KEY (docente_id) REFERENCES docentes(id) ON DELETE CASCADE,
     FOREIGN KEY (materia_id) REFERENCES materias(id) ON DELETE CASCADE
@@ -76,3 +85,14 @@ CREATE TABLE matriculas (
 INSERT INTO matriculas (alumno_id, docente_id, materia_id, fecha_matricula) VALUES
 (1, 1, 1, '2024-02-01'),
 (2, 1, 2, '2024-02-05');
+
+CREATE TABLE acciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT DEFAULT NULL,
+    rol VARCHAR(20) NOT NULL,
+    accion VARCHAR(50) NOT NULL,
+    entidad VARCHAR(50) NOT NULL,
+    detalle VARCHAR(255) DEFAULT NULL,
+    created_at DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES usuarios(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

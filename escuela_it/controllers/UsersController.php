@@ -1,49 +1,53 @@
 <?php
 require_once BASE_PATH . '/controllers/BaseCrudController.php';
-require_once BASE_PATH . '/models/MateriaModel.php';
+require_once BASE_PATH . '/models/UserModel.php';
 
-class MateriasController extends BaseCrudController
+class UsersController extends BaseCrudController
 {
     private $model;
 
     public function __construct()
     {
-        $this->model = new MateriaModel();
+        $this->model = new UserModel();
     }
 
     public function index()
     {
         $this->requireRole(array('admin'));
         $rows = $this->paginateRows($this->model->all(), isset($_GET['page']) ? (int) $_GET['page'] : 1, 10);
-        $this->view('materias/index', $rows);
+        $this->view('users/index', $rows);
     }
 
     public function form()
     {
         $this->requireRole(array('admin'));
-        $row = array('id' => '', 'nombre' => '', 'descripcion' => '', 'creditos' => 3, 'docente_id' => '');
+        $row = array('id' => '', 'correo' => '', 'rol' => 'alumno', 'alumno_id' => '', 'docente_id' => '');
         if (!empty($_GET['id'])) {
             $found = $this->model->find((int) $_GET['id']);
             if ($found) {
                 $row = $found;
             }
         }
-        $this->view('materias/form', array('row' => $row, 'docentes' => $this->model->docentes()));
+
+        $this->view('users/form', array(
+            'row' => $row,
+            'profiles' => $this->model->profiles(),
+        ));
     }
 
     public function save()
     {
         $this->requireRole(array('admin'));
-        $data = array(
+        $this->model->save(array(
             'id' => $this->clean('id'),
-            'nombre' => $this->clean('nombre'),
-            'descripcion' => $this->clean('descripcion'),
-            'creditos' => $this->clean('creditos', 3),
+            'correo' => $this->clean('correo'),
+            'password' => $this->clean('password'),
+            'rol' => $this->clean('rol'),
+            'alumno_id' => $this->clean('alumno_id'),
             'docente_id' => $this->clean('docente_id'),
-        );
-        $this->model->save($data);
-        $this->logAction('update', 'materias', 'actualizo una materia');
-        header('Location: index.php?controller=materias&action=index');
+        ));
+        $this->logAction('update', 'usuarios', 'admin gestiono usuarios');
+        header('Location: index.php?controller=users&action=index');
         exit;
     }
 
@@ -52,9 +56,9 @@ class MateriasController extends BaseCrudController
         $this->requireRole(array('admin'));
         if (!empty($_GET['id'])) {
             $this->model->delete((int) $_GET['id']);
-            $this->logAction('delete', 'materias', 'elimino una materia');
+            $this->logAction('delete', 'usuarios', 'elimino un usuario');
         }
-        header('Location: index.php?controller=materias&action=index');
+        header('Location: index.php?controller=users&action=index');
         exit;
     }
 }

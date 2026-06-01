@@ -13,14 +13,14 @@ class AlumnosController extends BaseCrudController
 
     public function index()
     {
-        $this->requireAuth();
-        $rows = $this->model->all();
-        $this->view('alumnos/index', array('rows' => $rows));
+        $this->requireRole(array('admin'));
+        $rows = $this->paginateRows($this->model->all(), isset($_GET['page']) ? (int) $_GET['page'] : 1, 10);
+        $this->view('alumnos/index', $rows);
     }
 
     public function form()
     {
-        $this->requireAuth();
+        $this->requireRole(array('admin'));
         $row = array('id' => '', 'nombre' => '', 'apellido' => '', 'sexo' => '1', 'fecha_nacimiento' => '', 'fecha_registro' => date('Y-m-d'), 'foto' => '', 'correo' => '');
         if (!empty($_GET['id'])) {
             $found = $this->model->find((int) $_GET['id']);
@@ -33,7 +33,7 @@ class AlumnosController extends BaseCrudController
 
     public function save()
     {
-        $this->requireAuth();
+        $this->requireRole(array('admin'));
         $data = array(
             'id' => $this->clean('id'),
             'nombre' => $this->clean('nombre'),
@@ -45,15 +45,17 @@ class AlumnosController extends BaseCrudController
             'correo' => $this->clean('correo'),
         );
         $this->model->save($data);
+        $this->logAction('update', 'alumnos', 'actualizo un alumno');
         header('Location: index.php?controller=alumnos&action=index');
         exit;
     }
 
     public function delete()
     {
-        $this->requireAuth();
+        $this->requireRole(array('admin'));
         if (!empty($_GET['id'])) {
             $this->model->delete((int) $_GET['id']);
+            $this->logAction('delete', 'alumnos', 'elimino un alumno');
         }
         header('Location: index.php?controller=alumnos&action=index');
         exit;
