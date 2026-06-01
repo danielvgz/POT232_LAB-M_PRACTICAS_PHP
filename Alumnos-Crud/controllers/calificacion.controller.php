@@ -18,19 +18,34 @@ class CalificacionController
         $mensaje = '';
         $registros = [];
         $vista = 'sin_permiso';
+        $paginaActual = max(1, (int)($_GET['page'] ?? 1));
+        $porPagina = 10;
+        $totalPaginas = 1;
 
         if (in_array($rolActual, ['profesor', 'docente'], true)) {
             $idDocente = $this->model->ObtenerDocenteIdPorUsuario($idUsuario, $correoUsuario);
             if ($idDocente) {
-                $registros = $this->model->ListarParaDocente($idDocente);
+                $totalRegistros = $this->model->ContarParaDocente($idDocente);
+                $totalPaginas = max(1, (int)ceil($totalRegistros / $porPagina));
+                $offset = ($paginaActual - 1) * $porPagina;
+                $registros = $this->model->ListarParaDocentePaginado($idDocente, $porPagina, $offset);
                 $vista = 'docente';
             } else {
                 $mensaje = 'No se encontró un docente relacionado con su usuario.';
             }
+        } elseif ($rolActual === 'admin') {
+            $totalRegistros = $this->model->ContarTodos();
+            $totalPaginas = max(1, (int)ceil($totalRegistros / $porPagina));
+            $offset = ($paginaActual - 1) * $porPagina;
+            $registros = $this->model->ListarTodosPaginado($porPagina, $offset);
+            $vista = 'admin';
         } elseif ($rolActual === 'alumno') {
             $idAlumno = $this->model->ObtenerAlumnoIdPorUsuario($idUsuario, $correoUsuario);
             if ($idAlumno) {
-                $registros = $this->model->ListarParaAlumno($idAlumno);
+                $totalRegistros = $this->model->ContarParaAlumno($idAlumno);
+                $totalPaginas = max(1, (int)ceil($totalRegistros / $porPagina));
+                $offset = ($paginaActual - 1) * $porPagina;
+                $registros = $this->model->ListarParaAlumnoPaginado($idAlumno, $porPagina, $offset);
                 $vista = 'alumno';
             } else {
                 $mensaje = 'No se encontró un alumno relacionado con su usuario.';

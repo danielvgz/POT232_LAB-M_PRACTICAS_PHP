@@ -97,6 +97,38 @@ class InscripcionModel extends ModelBase
         return $stm->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function ContarPorAlumno($idAlumno)
+    {
+        $stm = $this->pdo->prepare("SELECT COUNT(*) AS total FROM inscripciones WHERE id_alumno = ?");
+        $stm->execute([(int)$idAlumno]);
+        $row = $stm->fetch(PDO::FETCH_OBJ);
+        return (int)($row->total ?? 0);
+    }
+
+    public function ListarPorAlumnoPaginado($idAlumno, $limite, $offset)
+    {
+        $sql = "SELECT i.id,
+                       i.fecha_inscripcion,
+                       ad.id AS id_asignacion_docente,
+                       asig.nombre AS nombre_asignacion,
+                       asig.creditos,
+                       d.nombre AS nombre_docente,
+                       d.apellido AS apellido_docente
+                FROM inscripciones i
+                INNER JOIN asignaciones_docente ad ON ad.id = i.id_asignacion_docente
+                INNER JOIN asignaciones asig ON asig.id = ad.id_asignacion
+                INNER JOIN docentes d ON d.id = ad.id_docente
+                WHERE i.id_alumno = ?
+                ORDER BY asig.nombre
+                LIMIT ? OFFSET ?";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(1, (int)$idAlumno, PDO::PARAM_INT);
+        $stm->bindValue(2, (int)$limite, PDO::PARAM_INT);
+        $stm->bindValue(3, (int)$offset, PDO::PARAM_INT);
+        $stm->execute();
+        return $stm->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function ListarAsignacionesDisponibles($idAlumno)
     {
         $sql = "SELECT ad.id,

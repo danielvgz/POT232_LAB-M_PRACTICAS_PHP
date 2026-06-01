@@ -11,13 +11,28 @@ class DocenteController{
     }
 
     public function Index(){
-        $docentes = $this->model->Listar();
+        if (($this->rolActual() !== 'admin')) {
+            header('Location: index.php?c=Alumno&msg=sin_permiso');
+            exit;
+        }
+
+        $paginaActual = max(1, (int)($_GET['page'] ?? 1));
+        $porPagina = 10;
+        $offset = ($paginaActual - 1) * $porPagina;
+        $docentes = $this->model->ListarPaginado($porPagina, $offset);
+        $totalRegistros = $this->model->Contar();
+        $totalPaginas = max(1, (int)ceil($totalRegistros / $porPagina));
         require_once 'views/header.php';
         require_once 'views/docentes/index.php';
         require_once 'views/footer.php';
     }
 
     public function Crud(){
+        if (($this->rolActual() !== 'admin')) {
+            header('Location: index.php?c=Alumno&msg=sin_permiso');
+            exit;
+        }
+
         $docente = new Docente();
 
         if(isset($_REQUEST['id'])){
@@ -30,6 +45,11 @@ class DocenteController{
     }
 
     public function Guardar(){
+        if (($this->rolActual() !== 'admin')) {
+            header('Location: index.php?c=Alumno&msg=sin_permiso');
+            exit;
+        }
+
         $docente = new Docente();
 
         $docente->id           = $_REQUEST['id'];
@@ -42,11 +62,21 @@ class DocenteController{
             $this->model->Actualizar($docente) : 
             $this->model->Registrar($docente));
 
-        header('Location: index.php?action=docente');
+        header('Location: index.php?c=Docente');
     }
 
     public function Eliminar(){
+        if (($this->rolActual() !== 'admin')) {
+            header('Location: index.php?c=Alumno&msg=sin_permiso');
+            exit;
+        }
+
         $this->model->Eliminar($_REQUEST['id']);
-        header('Location: index.php?action=docente');
+        header('Location: index.php?c=Docente');
+    }
+
+    private function rolActual()
+    {
+        return $_SESSION['usuario_rol'] ?? '';
     }
 }

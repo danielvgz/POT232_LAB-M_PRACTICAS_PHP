@@ -26,9 +26,15 @@ class InscripcionController
         $inscripciones = [];
         $asignacionesDisponibles = [];
         $totalCreditos = 0;
+        $paginaActual = max(1, (int)($_GET['page'] ?? 1));
+        $porPagina = 10;
+        $totalPaginas = 1;
 
         if ($idAlumno) {
-            $inscripciones = $this->model->ListarPorAlumno($idAlumno);
+            $totalRegistros = $this->model->ContarPorAlumno($idAlumno);
+            $totalPaginas = max(1, (int)ceil($totalRegistros / $porPagina));
+            $offset = ($paginaActual - 1) * $porPagina;
+            $inscripciones = $this->model->ListarPorAlumnoPaginado($idAlumno, $porPagina, $offset);
             $asignacionesDisponibles = $this->model->ListarAsignacionesDisponibles($idAlumno);
             $totalCreditos = $this->model->ObtenerTotalCreditosPorAlumno($idAlumno);
         } else {

@@ -69,6 +69,38 @@ $promedio = static function ($r) {
         <?php endif; ?>
         </tbody>
     </table>
+<?php elseif ($vista === 'admin'): ?>
+    <p class="text-muted">Vista general de calificaciones.</p>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Alumno</th>
+                <th>Asignación</th>
+                <th>Docente</th>
+                <th>E1</th>
+                <th>E2</th>
+                <th>E3</th>
+                <th>E4</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php if (empty($registros)): ?>
+            <tr><td colspan="7">No hay calificaciones registradas.</td></tr>
+        <?php else: ?>
+            <?php foreach ($registros as $r): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($r->apellido_alumno . ', ' . $r->nombre_alumno); ?></td>
+                    <td><?php echo htmlspecialchars($r->nombre_asignacion); ?></td>
+                    <td><?php echo htmlspecialchars($r->nombre_docente . ' ' . $r->apellido_docente); ?></td>
+                    <td><?php echo $r->evaluacion1 === null ? '—' : htmlspecialchars((string)$r->evaluacion1); ?></td>
+                    <td><?php echo $r->evaluacion2 === null ? '—' : htmlspecialchars((string)$r->evaluacion2); ?></td>
+                    <td><?php echo $r->evaluacion3 === null ? '—' : htmlspecialchars((string)$r->evaluacion3); ?></td>
+                    <td><?php echo $r->evaluacion4 === null ? '—' : htmlspecialchars((string)$r->evaluacion4); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        </tbody>
+    </table>
 <?php elseif ($vista === 'alumno'): ?>
     <p class="text-muted">Estas son las calificaciones de sus asignaciones inscritas.</p>
     <table class="table table-striped table-bordered">
@@ -103,4 +135,16 @@ $promedio = static function ($r) {
     </table>
 <?php else: ?>
     <div class="alert alert-info">Este menú está disponible para alumnos y docentes.</div>
+<?php endif; ?>
+
+<?php if ($totalPaginas > 1): ?>
+    <nav>
+        <ul class="pagination">
+            <?php for ($pagina = 1; $pagina <= $totalPaginas; $pagina++): ?>
+                <li class="<?php echo $pagina === $paginaActual ? 'active' : ''; ?>">
+                    <a href="?c=Calificacion&page=<?php echo $pagina; ?>"><?php echo $pagina; ?></a>
+                </li>
+            <?php endfor; ?>
+        </ul>
+    </nav>
 <?php endif; ?>

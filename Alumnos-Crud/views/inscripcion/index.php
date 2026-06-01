@@ -70,4 +70,15 @@
         <?php endif; ?>
         </tbody>
     </table>
+    <?php if ($totalPaginas > 1): ?>
+        <nav>
+            <ul class="pagination">
+                <?php for ($pagina = 1; $pagina <= $totalPaginas; $pagina++): ?>
+                    <li class="<?php echo $pagina === $paginaActual ? 'active' : ''; ?>">
+                        <a href="?c=Inscripcion&page=<?php echo $pagina; ?>"><?php echo $pagina; ?></a>
+                    </li>
+                <?php endfor; ?>
+            </ul>
+        </nav>
+    <?php endif; ?>
 <?php endif; ?>
