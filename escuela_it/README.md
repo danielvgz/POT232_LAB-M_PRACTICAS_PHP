@@ -5,7 +5,8 @@ Proyecto starter en `escuela_it` con MVC (`controllers/`, `models/`, `views/`), 
 - La vista de login y layout usa Bootstrap 3 con referencia local (`../Alumnos-Crud/assets`) y fallback por CDN.
 - Roles:
   - `alumno`: solo ve sus matriculas inscritas.
-  - `maestro`/`profesor`: puede ver asignaciones con lista de alumnos y gestionar catalogos.
+  - `maestro`/`profesor`: puede ver asignaciones con lista de alumnos.
+  - `admin`: ve y gestiona alumnos, docentes y materias.
 
 ## Requisitos
 - PHP 5.6+ / 7+

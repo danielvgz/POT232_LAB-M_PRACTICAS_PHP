@@ -1,6 +1,7 @@
 <?php
 $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 $userRole = $user && isset($user['rol']) ? strtolower($user['rol']) : '';
+$isAdmin = $userRole === 'admin';
 $isProfesor = in_array($userRole, array('maestro', 'profesor'), true);
 $roleLabel = $isProfesor ? 'profesor' : $userRole;
 $localAssetsBase = rtrim(BASE_URL, '/\\') . '/../Alumnos-Crud/assets';
@@ -25,10 +26,12 @@ $localAssetsBase = rtrim(BASE_URL, '/\\') . '/../Alumnos-Crud/assets';
             <ul class="nav navbar-nav">
                 <li><a href="index.php?controller=home&action=index">Inicio</a></li>
                 <li><a href="index.php?controller=profile&action=index">Mi perfil</a></li>
-                <?php if ($isProfesor || $userRole === 'admin'): ?>
+                <?php if ($isAdmin): ?>
                     <li><a href="index.php?controller=alumnos&action=index">Alumnos</a></li>
                     <li><a href="index.php?controller=docentes&action=index">Docentes</a></li>
                     <li><a href="index.php?controller=materias&action=index">Materias</a></li>
+                <?php endif; ?>
+                <?php if ($isProfesor || $isAdmin): ?>
                     <li><a href="index.php?controller=matriculas&action=index">Asignaciones</a></li>
                 <?php endif; ?>
                 <?php if ($userRole === 'alumno'): ?>
