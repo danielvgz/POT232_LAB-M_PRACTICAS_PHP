@@ -21,6 +21,7 @@ class AuthController extends BaseCrudController
                 $user = $model->login($correo, $password);
                 if ($user) {
                     $_SESSION['user'] = $user;
+                    $this->logAction('login', 'usuarios', $correo);
                     header('Location: index.php?controller=home&action=index');
                     exit;
                 }

@@ -20,6 +20,7 @@
             <div class="alert alert-info">
                 Usuario alumno: <strong>hitogoroshi@outlook.com</strong><br>
                 Usuario profesor: <strong>juan.perez@escuela.it</strong><br>
+                Usuario administrador: <strong>admin@escuela.it</strong><br>
                 Clave por defecto: <strong>password</strong>
             </div>
             <form method="post" action="index.php?controller=auth&action=login">

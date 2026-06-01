@@ -23,13 +23,20 @@ $localAssetsBase = rtrim(BASE_URL, '/\\') . '/../Alumnos-Crud/assets';
         </div>
         <?php if ($user): ?>
             <ul class="nav navbar-nav">
-                <?php if ($isProfesor): ?>
+                <li><a href="index.php?controller=home&action=index">Inicio</a></li>
+                <li><a href="index.php?controller=profile&action=index">Mi perfil</a></li>
+                <?php if ($isProfesor || $userRole === 'admin'): ?>
                     <li><a href="index.php?controller=alumnos&action=index">Alumnos</a></li>
                     <li><a href="index.php?controller=docentes&action=index">Docentes</a></li>
                     <li><a href="index.php?controller=materias&action=index">Materias</a></li>
                     <li><a href="index.php?controller=matriculas&action=index">Asignaciones</a></li>
-                <?php else: ?>
+                <?php endif; ?>
+                <?php if ($userRole === 'alumno'): ?>
                     <li><a href="index.php?controller=matriculas&action=index">Matriculas inscritas</a></li>
+                <?php endif; ?>
+                <?php if ($userRole === 'admin'): ?>
+                    <li><a href="index.php?controller=users&action=index">Usuarios</a></li>
+                    <li><a href="index.php?controller=acciones&action=index">Acciones</a></li>
                 <?php endif; ?>
             </ul>
             <ul class="nav navbar-nav navbar-right">

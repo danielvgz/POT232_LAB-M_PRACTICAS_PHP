@@ -16,6 +16,9 @@ if (!isset($_SESSION['user']) && !in_array($controllerName, $publicRoutes, true)
 $controllerMap = array(
     'auth' => 'AuthController',
     'home' => 'HomeController',
+    'profile' => 'ProfileController',
+    'users' => 'UsersController',
+    'acciones' => 'AccionesController',
     'alumnos' => 'AlumnosController',
     'docentes' => 'DocentesController',
     'materias' => 'MateriasController',
