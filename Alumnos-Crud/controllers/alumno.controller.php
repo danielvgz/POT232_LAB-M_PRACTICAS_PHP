@@ -22,6 +22,10 @@ class AlumnoController{
 
         if (in_array($rolActual, ['profesor', 'docente'], true)) {
             $perfil = $this->usuarioModel->ObtenerPerfil((int)($_SESSION['usuario_id'] ?? 0));
+            if (!$perfil) {
+                header('Location: index.php?c=Alumno&a=Perfil&msg=usuario_no_encontrado');
+                exit;
+            }
             $idDocente = (int)($perfil->docente_id ?? 0);
             if (!$idDocente) {
                 header('Location: index.php?c=Alumno&a=Perfil&msg=docente_no_encontrado');
@@ -176,7 +180,12 @@ class AlumnoController{
             $alumnosExport = $this->model->Listar();
         } else {
             $perfil = $this->usuarioModel->ObtenerPerfil((int)($_SESSION['usuario_id'] ?? 0));
-            $idDocente = (int)($perfil->docente_id ?? 0);
+            if (!$perfil || empty($perfil->docente_id)) {
+                header('Location: index.php?c=Alumno&a=Perfil&msg=docente_no_encontrado');
+                exit;
+            }
+
+            $idDocente = (int)$perfil->docente_id;
             $idAsignacionDocente = (int)($_GET['matricula'] ?? 0);
             $alumnosExport = $this->model->ListarPorDocente(
                 $idDocente,

@@ -155,20 +155,30 @@ class UsuarioModel extends ModelBase
             $hashPassword = password_hash($password, PASSWORD_DEFAULT);
         }
 
-        $sql = "UPDATE usuarios SET username = ?, correo = ?" . ($hashPassword ? ", password_hash = ?" : "") . " WHERE id = ?";
-        $params = [$username, $correo];
-        if ($hashPassword) {
-            $params[] = $hashPassword;
-        }
-        $params[] = (int)$idUsuario;
-        $this->pdo->prepare($sql)->execute($params);
+        $this->pdo->beginTransaction();
+        try {
+            $sql = "UPDATE usuarios SET username = ?, correo = ?" . ($hashPassword ? ", password_hash = ?" : "") . " WHERE id = ?";
+            $params = [$username, $correo];
+            if ($hashPassword) {
+                $params[] = $hashPassword;
+            }
+            $params[] = (int)$idUsuario;
+            $this->pdo->prepare($sql)->execute($params);
 
-        if ($usuario->rol === 'alumno' && !empty($usuario->alumno_id)) {
-            $this->actualizarPerfilAlumno((int)$usuario->alumno_id, $datos, $correo);
-        }
+            if ($usuario->rol === 'alumno' && !empty($usuario->alumno_id)) {
+                $this->actualizarPerfilAlumno((int)$usuario->alumno_id, $datos, $correo);
+            }
 
-        if (in_array($usuario->rol, ['profesor', 'docente'], true) && !empty($usuario->docente_id)) {
-            $this->actualizarPerfilDocente((int)$usuario->docente_id, $datos, $correo);
+            if (in_array($usuario->rol, ['profesor', 'docente'], true) && !empty($usuario->docente_id)) {
+                $this->actualizarPerfilDocente((int)$usuario->docente_id, $datos, $correo);
+            }
+
+            $this->pdo->commit();
+        } catch (Exception $e) {
+            if ($this->pdo->inTransaction()) {
+                $this->pdo->rollBack();
+            }
+            throw $e;
         }
     }
 
