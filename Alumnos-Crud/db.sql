@@ -45,7 +45,7 @@ CREATE TABLE usuarios (
     username VARCHAR(50) NOT NULL UNIQUE,
     correo VARCHAR(100) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    rol ENUM('alumno','docente','admin') NOT NULL DEFAULT 'alumno',
+    rol ENUM('alumno','profesor','admin') NOT NULL DEFAULT 'alumno',
     alumno_id INT DEFAULT NULL,
     docente_id INT DEFAULT NULL,
     FOREIGN KEY (alumno_id) REFERENCES alumnos(id) ON DELETE SET NULL,
@@ -55,26 +55,29 @@ CREATE TABLE usuarios (
 -- Datos ejemplo para usuarios
 -- Usuarios tipo alumno:
 INSERT INTO usuarios (username, correo, password_hash, rol, alumno_id)
-VALUES ('eduardo', 'hitogoroshi@outlook.com', MD5('contraseñaSegura123'), 'alumno', 1);
+VALUES ('eduardo', 'hitogoroshi@outlook.com', '$2y$10$J21UXuiKec1lSfwbAjbPruQthKISWRWQ1lTwTGVhOA9L5D.snz5Su', 'alumno', 1);
 
--- Usuarios tipo docente:
+-- Usuarios tipo profesor:
 INSERT INTO usuarios (username, correo, password_hash, rol, docente_id)
-VALUES ('jperez', 'jperez@escuela.com', MD5('docente123'), 'docente', 1);
+VALUES ('jperez', 'jperez@escuela.com', '$2y$10$dlQLOOQUXBOn/uL5C/9YOeH1tr5EXPXzLt7cfX3f9C2z20WGbC2JW', 'profesor', 1);
 
 -- Usuario tipo admin (sin alumno ni docente):
 INSERT INTO usuarios (username, correo, password_hash, rol, alumno_id, docente_id)
-VALUES ('admin', 'admin@escuela.com', MD5('admin123'), 'admin', NULL, NULL);
+VALUES ('admin', 'admin@escuela.com', '$2y$10$1RuxqrMSPEOsFTg5v5Fy.umdaeNgQDF4FGbC9ocAFm28INN.7dTby', 'admin', NULL, NULL);
 
 -- ========== TABLA ASIGNACIONES ==========
 DROP TABLE IF EXISTS asignaciones;
 CREATE TABLE asignaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
+    creditos INT NOT NULL DEFAULT 1,
     descripcion TEXT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- (Opcional: agrega datos de ejemplo si quieres)
--- INSERT INTO asignaciones (nombre, descripcion) VALUES ('Matematicas 1', 'Primera materia de matematicas');
+INSERT INTO asignaciones (nombre, creditos, descripcion) VALUES
+('Matemáticas', 5, 'Matrícula base de matemáticas'),
+('Lenguaje', 4, 'Matrícula de comunicación y lenguaje'),
+('Física', 6, 'Matrícula de ciencias físicas');
 
 -- ========== TABLA ASIGNACIONES_DOCENTE ==========
 DROP TABLE IF EXISTS asignaciones_docente;
@@ -96,4 +99,16 @@ CREATE TABLE inscripciones (
     fecha_inscripcion DATE, -- sin DEFAULT CURRENT_DATE
     FOREIGN KEY (id_alumno) REFERENCES alumnos(id) ON DELETE CASCADE,
     FOREIGN KEY (id_asignacion_docente) REFERENCES asignaciones_docente(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ========== TABLA CALIFICACIONES ==========
+DROP TABLE IF EXISTS calificaciones;
+CREATE TABLE calificaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_inscripcion INT NOT NULL UNIQUE,
+    evaluacion1 DECIMAL(5,2) NULL,
+    evaluacion2 DECIMAL(5,2) NULL,
+    evaluacion3 DECIMAL(5,2) NULL,
+    evaluacion4 DECIMAL(5,2) NULL,
+    FOREIGN KEY (id_inscripcion) REFERENCES inscripciones(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
