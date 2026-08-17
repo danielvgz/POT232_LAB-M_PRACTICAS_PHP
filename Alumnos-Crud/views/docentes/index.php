@@ -1,5 +1,5 @@
 <h2>Lista de Docentes</h2>
-<a href="docente.controller.php?action=Crud">Agregar Docente</a>
+<a href="index.php?c=Docente&a=Crud">Agregar Docente</a>
 <table border="1">
     <thead>
         <tr>
@@ -15,10 +15,22 @@
             <td><?= $d->email ?></td>
             <td><?= $d->especialidad ?></td>
             <td>
-                <a href="docente.controller.php?action=Crud&id=<?= $d->id ?>">Editar</a>
-                <a href="docente.controller.php?action=Eliminar&id=<?= $d->id ?>" onclick="return confirm('¿Seguro de eliminar?')">Eliminar</a>
+                <a href="index.php?c=Docente&a=Crud&id=<?= $d->id ?>">Editar</a>
+                <a href="index.php?c=Docente&a=Eliminar&id=<?= $d->id ?>" onclick="return confirm('¿Seguro de eliminar?')">Eliminar</a>
             </td>
         </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<?php if ($totalPaginas > 1): ?>
+<nav>
+    <ul class="pagination">
+        <?php for ($pagina = 1; $pagina <= $totalPaginas; $pagina++): ?>
+            <li class="<?php echo $pagina === $paginaActual ? 'active' : ''; ?>">
+                <a href="index.php?c=Docente&page=<?php echo $pagina; ?>"><?php echo $pagina; ?></a>
+            </li>
+        <?php endfor; ?>
+    </ul>
+</nav>
+<?php endif; ?>

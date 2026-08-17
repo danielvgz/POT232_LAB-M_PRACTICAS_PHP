@@ -16,5 +16,35 @@
     <body>
         
         <div class="container">
+            <?php if (!empty($_SESSION['usuario_username'])): ?>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-xs-12 text-right">
+                        <small>
+                            Usuario: <strong><?php echo htmlspecialchars($_SESSION['usuario_username']); ?></strong>
+                            (Rol: <?php echo htmlspecialchars(($_SESSION['usuario_rol'] ?? '') === 'docente' ? 'profesor' : ($_SESSION['usuario_rol'] ?? '')); ?>)
+                        </small>
+                        |
+                        <a href="index.php?c=Alumno&a=Perfil">Mi perfil</a>
+                        |
+                        <a href="index.php?action=logout">Cerrar sesión</a>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-xs-12">
+                        <?php if (($_SESSION['usuario_rol'] ?? '') === 'admin'): ?>
+                            <a class="btn btn-default btn-sm" href="index.php?c=Alumno">Alumnos</a>
+                            <a class="btn btn-default btn-sm" href="index.php?c=Docente">Docentes</a>
+                        <?php elseif (in_array(($_SESSION['usuario_rol'] ?? ''), ['profesor', 'docente'], true)): ?>
+                            <a class="btn btn-default btn-sm" href="index.php?c=Alumno">Mis alumnos</a>
+                        <?php endif; ?>
+                        <?php if (($_SESSION['usuario_rol'] ?? '') === 'alumno'): ?>
+                            <a class="btn btn-default btn-sm" href="index.php?c=Inscripcion">Matrículas</a>
+                        <?php endif; ?>
+                        <?php if (in_array(($_SESSION['usuario_rol'] ?? ''), ['alumno', 'profesor', 'docente', 'admin'], true)): ?>
+                            <a class="btn btn-info btn-sm" href="index.php?c=Calificacion">Calificaciones</a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
             <div class="row">
                 <div class="col-xs-12">

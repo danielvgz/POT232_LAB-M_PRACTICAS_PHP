@@ -29,6 +29,34 @@ class DocenteModel
         return $result;
     }
 
+    public function Contar()
+    {
+        $stm = $this->pdo->prepare("SELECT COUNT(*) AS total FROM docentes");
+        $stm->execute();
+        $row = $stm->fetch(PDO::FETCH_OBJ);
+        return (int)($row->total ?? 0);
+    }
+
+    public function ListarPaginado($limite, $offset)
+    {
+        $stm = $this->pdo->prepare("SELECT * FROM docentes ORDER BY apellido, nombre LIMIT ? OFFSET ?");
+        $stm->bindValue(1, (int)$limite, PDO::PARAM_INT);
+        $stm->bindValue(2, (int)$offset, PDO::PARAM_INT);
+        $stm->execute();
+
+        $result = [];
+        foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
+            $result[] = new Docente(
+                $r->id,
+                $r->nombre,
+                $r->apellido,
+                $r->email,
+                $r->especialidad
+            );
+        }
+        return $result;
+    }
+
     public function Obtener($id)
     {
         $stm = $this->pdo->prepare("SELECT * FROM docentes WHERE id = ?");
